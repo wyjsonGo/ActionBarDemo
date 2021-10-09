@@ -31,7 +31,7 @@ public class TestFragment extends BaseFragment {
     }
 
     private void initActionBar() {
-        getSuperActionBar().initActionBarForBothTxt("标题", R.string.icon_setting, new SuperActionBar.OnClickListener() {
+        getSuperActionBar().initActionBarForBothTxt("标题", R.string.icon_setting, true, new SuperActionBar.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "设置按钮点击事件", Toast.LENGTH_SHORT).show();

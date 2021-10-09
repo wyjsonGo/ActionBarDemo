@@ -19,7 +19,7 @@ public class Test8Activity extends BaseActivity {
                 .initStyle(SuperActionBar.Style.TITLE_LEFT_IMG_RIGHT_TXT)
                 .setTitleText("标题")
                 .setLeftImgBtn(R.drawable.super_action_bar_back_bg_selector, new SuperActionBar.OnActionBarLeftClickListener())
-                .setRightTxtBtn(R.string.action_bar_right_save, new SuperActionBar.OnClickListener() {
+                .setRightTxtBtn(R.string.action_bar_right_save, false, new SuperActionBar.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(Test8Activity.this, "保存按钮的点击事件", Toast.LENGTH_SHORT).show();
