@@ -122,7 +122,7 @@ public class SuperActionBar extends RelativeLayout {
                 initStyle(Style.getActionType(styleType));
 
                 String leftText = ta.getString(R.styleable.SuperActionBar_super_action_bar_left_text);
-                if (!TextUtils.isEmpty(leftText) && leftTxtBtn != null) {
+                if (!TextUtils.isEmpty(leftText)) {
                     leftTxtBtn.setText(leftText);
                 } else if (TextUtils.isEmpty(leftText) && Style.getActionType(styleType) == SuperActionBar.Style.TITLE_LEFT_TXT) {
                     setLeftTxtBtn(R.string.action_bar_left_return_icon, true, new OnActionBarLeftClickListener());
@@ -414,8 +414,12 @@ public class SuperActionBar extends RelativeLayout {
     }
 
     public SuperActionBar setLeftTxtBtn(@StringRes int resId, boolean isIcon, OnClickListener listener) {
+        return setLeftTxtBtn(getContext().getString(resId), isIcon, listener);
+    }
+
+    public SuperActionBar setLeftTxtBtn(CharSequence text, boolean isIcon, OnClickListener listener) {
         if (leftTxtBtn != null) {
-            leftTxtBtn.setText(resId);
+            leftTxtBtn.setText(text);
             if (isIcon) {
                 leftTxtBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelOffset(R.dimen.base_action_bar_btn_icon_size));
             }
@@ -426,8 +430,12 @@ public class SuperActionBar extends RelativeLayout {
     }
 
     public SuperActionBar setRightTxtBtn(@StringRes int resId, boolean isIcon, OnClickListener listener) {
+        return setRightTxtBtn(getContext().getString(resId), isIcon, listener);
+    }
+
+    public SuperActionBar setRightTxtBtn(CharSequence text, boolean isIcon, OnClickListener listener) {
         if (rightTxtBtn != null) {
-            rightTxtBtn.setText(resId);
+            rightTxtBtn.setText(text);
             if (isIcon) {
                 rightTxtBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelOffset(R.dimen.base_action_bar_btn_icon_size));
             }
@@ -472,8 +480,8 @@ public class SuperActionBar extends RelativeLayout {
      * @param title
      */
     public void initActionBarForOnlyTitle(CharSequence title) {
-        initStyle(SuperActionBar.Style.TITLE_ONLY);
-        setTitleText(title);
+        initStyle(SuperActionBar.Style.TITLE_ONLY)
+                .setTitleText(title);
     }
 
     /**
@@ -482,9 +490,9 @@ public class SuperActionBar extends RelativeLayout {
      * @param title
      */
     public void initActionBarForLeftIcon(CharSequence title) {
-        initStyle(SuperActionBar.Style.TITLE_LEFT_TXT);
-        setTitleText(title);
-        setLeftTxtBtn(R.string.action_bar_left_return_icon, true, new OnActionBarLeftClickListener());
+        initStyle(SuperActionBar.Style.TITLE_LEFT_TXT)
+                .setTitleText(title)
+                .setLeftTxtBtn(R.string.action_bar_left_return_icon, true, new OnActionBarLeftClickListener());
     }
 
     /**
@@ -495,9 +503,9 @@ public class SuperActionBar extends RelativeLayout {
      * @param listener
      */
     public void initActionBarForLeftIcon(CharSequence title, @StringRes int icon, SuperActionBar.OnClickListener listener) {
-        initStyle(SuperActionBar.Style.TITLE_LEFT_TXT);
-        setTitleText(title);
-        setLeftTxtBtn(icon != 0 ? icon : R.string.action_bar_left_return_icon, true, listener);
+        initStyle(SuperActionBar.Style.TITLE_LEFT_TXT)
+                .setTitleText(title)
+                .setLeftTxtBtn(icon != 0 ? icon : R.string.action_bar_left_return_icon, true, listener);
     }
 
     /**
@@ -508,9 +516,9 @@ public class SuperActionBar extends RelativeLayout {
      * @param listener
      */
     public void initActionBarForRightIcon(CharSequence title, @StringRes int icon, SuperActionBar.OnClickListener listener) {
-        initStyle(SuperActionBar.Style.TITLE_RIGHT_TXT);
-        setTitleText(title);
-        setRightTxtBtn(icon, true, listener);
+        initStyle(SuperActionBar.Style.TITLE_RIGHT_TXT)
+                .setTitleText(title)
+                .setRightTxtBtn(icon, true, listener);
     }
 
     /**
@@ -521,9 +529,9 @@ public class SuperActionBar extends RelativeLayout {
      * @param listener
      */
     public void initActionBarForRightTxt(CharSequence title, @StringRes int resId, SuperActionBar.OnClickListener listener) {
-        initStyle(SuperActionBar.Style.TITLE_RIGHT_TXT);
-        setTitleText(title);
-        setRightTxtBtn(resId, false, listener);
+        initStyle(SuperActionBar.Style.TITLE_RIGHT_TXT)
+                .setTitleText(title)
+                .setRightTxtBtn(resId, false, listener);
     }
 
     /**
@@ -538,10 +546,10 @@ public class SuperActionBar extends RelativeLayout {
             CharSequence title,
             SuperActionBar.OnClickListener leftListener,
             @StringRes int rightResId, boolean isIcon, SuperActionBar.OnClickListener rightListener) {
-        initStyle(SuperActionBar.Style.TITLE_BOTH_TXT);
-        setTitleText(title);
-        setLeftTxtBtn(R.string.action_bar_left_return_icon, true, leftListener);
-        setRightTxtBtn(rightResId, isIcon, rightListener);
+        initStyle(SuperActionBar.Style.TITLE_BOTH_TXT)
+                .setTitleText(title)
+                .setLeftTxtBtn(R.string.action_bar_left_return_icon, true, leftListener)
+                .setRightTxtBtn(rightResId, isIcon, rightListener);
     }
 
     public void initActionBarForBothTxt(CharSequence title, @StringRes int rightResId, SuperActionBar.OnClickListener rightListener) {
@@ -565,10 +573,10 @@ public class SuperActionBar extends RelativeLayout {
             CharSequence title,
             @StringRes int leftResId, boolean isLeftIcon, SuperActionBar.OnClickListener leftListener,
             @StringRes int rightResId, boolean isRightIcon, SuperActionBar.OnClickListener rightListener) {
-        initStyle(SuperActionBar.Style.TITLE_BOTH_TXT);
-        setTitleText(title);
-        setLeftTxtBtn(leftResId, isLeftIcon, leftListener);
-        setRightTxtBtn(rightResId, isRightIcon, rightListener);
+        initStyle(SuperActionBar.Style.TITLE_BOTH_TXT)
+                .setTitleText(title)
+                .setLeftTxtBtn(leftResId, isLeftIcon, leftListener)
+                .setRightTxtBtn(rightResId, isRightIcon, rightListener);
     }
 
     /**
@@ -577,9 +585,9 @@ public class SuperActionBar extends RelativeLayout {
      * @param title
      */
     public void initActionBarForLeftImg(CharSequence title) {
-        initStyle(SuperActionBar.Style.TITLE_LEFT_IMG);
-        setTitleText(title);
-        setLeftImgBtn(R.drawable.super_action_bar_back_bg_selector, new OnActionBarLeftClickListener());
+        initStyle(SuperActionBar.Style.TITLE_LEFT_IMG)
+                .setTitleText(title)
+                .setLeftImgBtn(R.drawable.super_action_bar_back_bg_selector, new OnActionBarLeftClickListener());
     }
 
     /**
@@ -590,9 +598,9 @@ public class SuperActionBar extends RelativeLayout {
      * @param listener
      */
     public void initActionBarForLeftImg(CharSequence title, @DrawableRes int resId, SuperActionBar.OnClickListener listener) {
-        initStyle(SuperActionBar.Style.TITLE_LEFT_IMG);
-        setTitleText(title);
-        setLeftImgBtn(resId, listener);
+        initStyle(SuperActionBar.Style.TITLE_LEFT_IMG)
+                .setTitleText(title)
+                .setLeftImgBtn(resId, listener);
     }
 
     /**
@@ -604,9 +612,9 @@ public class SuperActionBar extends RelativeLayout {
      * @param listener
      */
     public void initActionBarForRightImg(CharSequence title, @DrawableRes int resId, @StringRes int promptResId, SuperActionBar.OnClickListener listener) {
-        initStyle(SuperActionBar.Style.TITLE_RIGHT_IMG);
-        setTitleText(title);
-        setRightImgBtn(resId, listener);
+        initStyle(SuperActionBar.Style.TITLE_RIGHT_IMG)
+                .setTitleText(title)
+                .setRightImgBtn(resId, listener);
     }
 
     /**
@@ -622,10 +630,10 @@ public class SuperActionBar extends RelativeLayout {
             CharSequence title,
             @DrawableRes int leftResId, SuperActionBar.OnClickListener leftListener,
             @DrawableRes int rightResId, SuperActionBar.OnClickListener rightListener) {
-        initStyle(SuperActionBar.Style.TITLE_BOTH_IMG);
-        setTitleText(title);
-        setLeftImgBtn(leftResId, leftListener);
-        setRightImgBtn(rightResId, rightListener);
+        initStyle(SuperActionBar.Style.TITLE_BOTH_IMG)
+                .setTitleText(title)
+                .setLeftImgBtn(leftResId, leftListener)
+                .setRightImgBtn(rightResId, rightListener);
     }
 
     /**

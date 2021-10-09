@@ -26,7 +26,7 @@ public class BaseActivity extends FragmentActivity {
     }
 
     public SuperActionBar getSuperActionBar() {
-        return findViewById(R.id.action_bar);
+        return findViewById(R.id.super_action_bar);
     }
 
     /**
