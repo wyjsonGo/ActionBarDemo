@@ -5,6 +5,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/genuine_action_bar_color_background"
-    app:super.action.bar.style="title_only"
-    app:super.action.bar.title.text="@string/app_name" /><!--    android:elevation="@dimen/base_action_bar_elevation"-->
-
+    app:super_action_bar_style="title_only"
+    app:super_action_bar_title_text="@string/app_name" /><!--    android:elevation="@dimen/base_action_bar_elevation"-->
