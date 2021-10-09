@@ -5,6 +5,8 @@
     android:ellipsize="marquee"
     android:gravity="center"
     android:marqueeRepeatLimit="marquee_forever"
+    android:paddingStart="2dp"
+    android:paddingEnd="2dp"
     android:scrollHorizontally="true"
     android:singleLine="true"
     android:textColor="@color/action_bar_base_color_text"
