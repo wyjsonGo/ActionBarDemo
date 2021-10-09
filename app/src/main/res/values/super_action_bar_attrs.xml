@@ -15,20 +15,22 @@
             <enum name="title_left_txt_right_img" value="0x09" />
         </attr>
 
+        <attr name="super_action_bar_title_text" format="string" />
         <attr name="super_action_bar_left_text" format="string" />
         <attr name="super_action_bar_right_text" format="string" />
-        <attr name="super_action_bar_title_text" format="string" />
+        <attr name="super_action_bar_left_icon" format="string" />
+        <attr name="super_action_bar_right_icon" format="string" />
 
         <attr name="super_action_bar_left_img" format="reference" />
         <attr name="super_action_bar_right_img" format="reference" />
 
+        <attr name="super_action_bar_title_textColor" format="color" />
         <attr name="super_action_bar_left_textColor" format="color" />
         <attr name="super_action_bar_right_textColor" format="color" />
-        <attr name="super_action_bar_title_textColor" format="color" />
 
+        <attr name="super_action_bar_title_textSize" format="dimension" />
         <attr name="super_action_bar_left_textSize" format="dimension" />
         <attr name="super_action_bar_right_textSize" format="dimension" />
-        <attr name="super_action_bar_title_textSize" format="dimension" />
 
         <attr name="super_action_bar_background" format="reference|color" />
 

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
+import androidx.core.content.ContextCompat;
 
 import com.wyjson.actionbardemo.R;
 import com.wyjson.actionbardemo.utils.StatusBarUtils;
@@ -121,34 +122,52 @@ public class SuperActionBar extends RelativeLayout {
                 initStyle(Style.getActionType(styleType));
 
                 String leftText = ta.getString(R.styleable.SuperActionBar_super_action_bar_left_text);
-                if (!TextUtils.isEmpty(leftText) && leftTxtBtn != null)
+                if (!TextUtils.isEmpty(leftText) && leftTxtBtn != null) {
                     leftTxtBtn.setText(leftText);
+                } else if (TextUtils.isEmpty(leftText) && Style.getActionType(styleType) == SuperActionBar.Style.TITLE_LEFT_TXT) {
+                    setLeftTxtBtn(R.string.action_bar_left_return_icon, true, new OnActionBarLeftClickListener());
+                }
 
                 String rightText = ta.getString(R.styleable.SuperActionBar_super_action_bar_right_text);
                 if (!TextUtils.isEmpty(rightText) && rightTxtBtn != null)
                     rightTxtBtn.setText(rightText);
+
+                String leftIcon = ta.getString(R.styleable.SuperActionBar_super_action_bar_left_icon);
+                if (!TextUtils.isEmpty(leftIcon) && leftTxtBtn != null) {
+                    leftTxtBtn.setText(leftIcon);
+                    leftTxtBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelOffset(R.dimen.base_action_bar_btn_icon_size));
+                }
+
+                String rightIcon = ta.getString(R.styleable.SuperActionBar_super_action_bar_right_icon);
+                if (!TextUtils.isEmpty(rightIcon) && rightTxtBtn != null) {
+                    rightTxtBtn.setText(rightIcon);
+                    rightTxtBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelOffset(R.dimen.base_action_bar_btn_icon_size));
+                }
 
                 String titleText = ta.getString(R.styleable.SuperActionBar_super_action_bar_title_text);
                 if (!TextUtils.isEmpty(titleText) && tvTitle != null)
                     tvTitle.setText(titleText);
 
                 Drawable leftImg = ta.getDrawable(R.styleable.SuperActionBar_super_action_bar_left_img);
-                if (leftImg != null && leftImgBtn != null)
+                if (leftImg != null && leftImgBtn != null) {
                     leftImgBtn.setImageDrawable(leftImg);
+                } else if (leftImg == null && Style.getActionType(styleType) == SuperActionBar.Style.TITLE_LEFT_IMG) {
+                    setLeftImgBtn(R.drawable.super_action_bar_back_bg_selector, new OnActionBarLeftClickListener());
+                }
 
                 Drawable rightImg = ta.getDrawable(R.styleable.SuperActionBar_super_action_bar_right_img);
                 if (rightImg != null && rightImgBtn != null)
                     rightImgBtn.setImageDrawable(rightImg);
 
-                @ColorInt int leftTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_left_textColor, getResources().getColor(R.color.action_bar_base_color_text));
+                @ColorInt int leftTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_left_textColor, ContextCompat.getColor(context, R.color.action_bar_base_color_text));
                 if (leftTextColor != 0 && leftTxtBtn != null)
                     leftTxtBtn.setTextColor(leftTextColor);
 
-                @ColorInt int rightTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_right_textColor, getResources().getColor(R.color.action_bar_base_color_text));
+                @ColorInt int rightTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_right_textColor, ContextCompat.getColor(context, R.color.action_bar_base_color_text));
                 if (rightTextColor != 0 && rightTxtBtn != null)
                     rightTxtBtn.setTextColor(rightTextColor);
 
-                @ColorInt int titleTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_title_textColor, getResources().getColor(R.color.action_bar_base_color_text));
+                @ColorInt int titleTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_title_textColor, ContextCompat.getColor(context, R.color.action_bar_base_color_text));
                 if (titleTextColor != 0 && tvTitle != null)
                     tvTitle.setTextColor(titleTextColor);
 
