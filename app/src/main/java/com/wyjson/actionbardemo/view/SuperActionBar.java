@@ -29,7 +29,7 @@ import com.wyjson.actionbardemo.utils.StatusBarUtils;
  * 超级活动栏
  *
  * @author Wyjson
- * @version 3
+ * @version 4
  * @date 2021-03-29 11:16
  */
 public class SuperActionBar extends RelativeLayout {
