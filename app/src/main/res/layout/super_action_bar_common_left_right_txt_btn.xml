@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.wyjson.actionbardemo.view.IconTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/super_action_tv_btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:focusable="false"
+    android:padding="6dp"
+    android:textColor="@color/action_bar_base_color_text"
+    android:textSize="@dimen/base_action_bar_btn_size" />

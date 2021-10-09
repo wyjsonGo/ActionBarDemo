@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
+
+    <include layout="@layout/include_action_bar" />
+
+    <TextView
+        android:id="@+id/tv_test1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:text="1.标题,左返回按钮" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ff0000" />
+
+    <TextView
+        android:id="@+id/tv_test2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:text="2.标题,右按钮" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ff0000" />
+
+    <TextView
+        android:id="@+id/tv_test3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:text="3.标题,左右按钮" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ff0000" />
+
+    <TextView
+        android:id="@+id/tv_test4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:text="4.标题,左按钮自定义图标和关闭事件" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ff0000" />
+
+    <TextView
+        android:id="@+id/tv_test5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:text="5.标题过长情况,确保不被两边按钮压住" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ff0000" />
+
+    <TextView
+        android:id="@+id/tv_test6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:text="6.标题过长情况,走马灯效果" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ff0000" />
+
+    <TextView
+        android:id="@+id/tv_test7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:text="7.自定义带图片" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ff0000" />
+
+    <TextView
+        android:id="@+id/tv_test8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:text="8.标题,左边图片,右边文字" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ff0000" />
+
+    <TextView
+        android:id="@+id/tv_test9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:text="9.关闭沉浸式状态栏,使用默认系统的" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ff0000" />
+
+    <TextView
+        android:id="@+id/tv_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:padding="10dp"
+        android:text="Icon" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ff0000" />
+
+</LinearLayout>

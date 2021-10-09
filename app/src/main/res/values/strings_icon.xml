@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!--android-->
+    <string name="icon_return">&#xe62e;</string>
+    <string name="icon_return_right">&#xe630;</string>
+    <string name="icon_more">&#xe66f;</string>
+
+    <string name="icon_setting">&#xe655;</string>
+    <string name="icon_close">&#xe619;</string>
+
+    <string name="icon_finish">&#xe625;</string>
+    <string name="icon_fault">&#xe62a;</string>
+    <string name="icon_download">&#xe624;</string>
+
+</resources>
