@@ -23,8 +23,6 @@ public class IconActivity extends BaseActivity implements View.OnClickListener {
 
         getSuperActionBar().initActionBarForLeftIcon("Icon");
 
-//        ((TextView) findViewById(R.id.tv_1)).setTypeface(IconFontUtils.getInstance().getIconStyleFont());
-
     }
 
     private boolean isIcon1, isIcon2;
