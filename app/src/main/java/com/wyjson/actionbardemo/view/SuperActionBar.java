@@ -121,53 +121,43 @@ public class SuperActionBar extends RelativeLayout {
             if (styleType != 0) {
                 initStyle(Style.getActionType(styleType));
 
+                // ---------------------------------------------------------------------------------
+                setLeftTxtBtn(R.string.action_bar_left_return_icon, true, new OnActionBarLeftClickListener());
+
                 String leftText = ta.getString(R.styleable.SuperActionBar_super_action_bar_left_text);
-                if (!TextUtils.isEmpty(leftText)) {
-                    leftTxtBtn.setText(leftText);
-                } else if (TextUtils.isEmpty(leftText) && Style.getActionType(styleType) == SuperActionBar.Style.TITLE_LEFT_TXT) {
-                    setLeftTxtBtn(R.string.action_bar_left_return_icon, true, new OnActionBarLeftClickListener());
-                }
+                setLeftTxtBtn(leftText, false, new OnActionBarLeftClickListener());
 
                 String rightText = ta.getString(R.styleable.SuperActionBar_super_action_bar_right_text);
-                if (!TextUtils.isEmpty(rightText) && rightTxtBtn != null)
-                    rightTxtBtn.setText(rightText);
+                setRightTxtBtn(rightText, false, null);
 
                 String leftIcon = ta.getString(R.styleable.SuperActionBar_super_action_bar_left_icon);
-                if (!TextUtils.isEmpty(leftIcon) && leftTxtBtn != null) {
-                    leftTxtBtn.setText(leftIcon);
-                    leftTxtBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelOffset(R.dimen.base_action_bar_btn_icon_size));
-                }
+                setLeftTxtBtn(leftIcon, true, new OnActionBarLeftClickListener());
 
                 String rightIcon = ta.getString(R.styleable.SuperActionBar_super_action_bar_right_icon);
-                if (!TextUtils.isEmpty(rightIcon) && rightTxtBtn != null) {
-                    rightTxtBtn.setText(rightIcon);
-                    rightTxtBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelOffset(R.dimen.base_action_bar_btn_icon_size));
-                }
+                setRightTxtBtn(rightIcon, true, null);
 
                 String titleText = ta.getString(R.styleable.SuperActionBar_super_action_bar_title_text);
-                if (!TextUtils.isEmpty(titleText) && tvTitle != null)
-                    tvTitle.setText(titleText);
+                setTitleText(titleText);
+
+                // ---------------------------------------------------------------------------------
+                setLeftImgBtn(R.drawable.super_action_bar_back_bg_selector, new OnActionBarLeftClickListener());
 
                 Drawable leftImg = ta.getDrawable(R.styleable.SuperActionBar_super_action_bar_left_img);
-                if (leftImg != null && leftImgBtn != null) {
-                    leftImgBtn.setImageDrawable(leftImg);
-                } else if (leftImg == null && Style.getActionType(styleType) == SuperActionBar.Style.TITLE_LEFT_IMG) {
-                    setLeftImgBtn(R.drawable.super_action_bar_back_bg_selector, new OnActionBarLeftClickListener());
-                }
+                setLeftImgBtn(leftImg, new OnActionBarLeftClickListener());
 
                 Drawable rightImg = ta.getDrawable(R.styleable.SuperActionBar_super_action_bar_right_img);
-                if (rightImg != null && rightImgBtn != null)
-                    rightImgBtn.setImageDrawable(rightImg);
+                setLeftImgBtn(rightImg, new OnActionBarLeftClickListener());
 
-                @ColorInt int leftTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_left_textColor, ContextCompat.getColor(context, R.color.action_bar_base_color_text));
+                // ---------------------------------------------------------------------------------
+                @ColorInt int leftTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_left_textColor, 0);
                 if (leftTextColor != 0 && leftTxtBtn != null)
                     leftTxtBtn.setTextColor(leftTextColor);
 
-                @ColorInt int rightTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_right_textColor, ContextCompat.getColor(context, R.color.action_bar_base_color_text));
+                @ColorInt int rightTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_right_textColor, 0);
                 if (rightTextColor != 0 && rightTxtBtn != null)
                     rightTxtBtn.setTextColor(rightTextColor);
 
-                @ColorInt int titleTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_title_textColor, ContextCompat.getColor(context, R.color.action_bar_base_color_text));
+                @ColorInt int titleTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_title_textColor, 0);
                 if (titleTextColor != 0 && tvTitle != null)
                     tvTitle.setTextColor(titleTextColor);
 
@@ -396,8 +386,12 @@ public class SuperActionBar extends RelativeLayout {
     }
 
     public SuperActionBar setLeftImgBtn(@DrawableRes int resId, OnClickListener listener) {
-        if (leftImgBtn != null) {
-            leftImgBtn.setImageResource(resId);
+        return setLeftImgBtn(ContextCompat.getDrawable(getContext(), resId), listener);
+    }
+
+    public SuperActionBar setLeftImgBtn(Drawable drawable, OnClickListener listener) {
+        if (leftImgBtn != null && drawable != null) {
+            leftImgBtn.setImageDrawable(drawable);
             setOnLeftClickListener(listener);
             setMiddleContainerMargin(llLeftContainer, true);
         }
@@ -405,8 +399,12 @@ public class SuperActionBar extends RelativeLayout {
     }
 
     public SuperActionBar setRightImgBtn(@DrawableRes int resId, OnClickListener listener) {
-        if (rightImgBtn != null) {
-            rightImgBtn.setImageResource(resId);
+        return setRightImgBtn(ContextCompat.getDrawable(getContext(), resId), listener);
+    }
+
+    public SuperActionBar setRightImgBtn(Drawable drawable, OnClickListener listener) {
+        if (rightImgBtn != null && drawable != null) {
+            rightImgBtn.setImageDrawable(drawable);
             setOnRightClickListener(listener);
             setMiddleContainerMargin(llRightContainer, false);
         }
@@ -418,11 +416,9 @@ public class SuperActionBar extends RelativeLayout {
     }
 
     public SuperActionBar setLeftTxtBtn(CharSequence text, boolean isIcon, OnClickListener listener) {
-        if (leftTxtBtn != null) {
+        if (leftTxtBtn != null && !TextUtils.isEmpty(text)) {
             leftTxtBtn.setText(text);
-            if (isIcon) {
-                leftTxtBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelOffset(R.dimen.base_action_bar_btn_icon_size));
-            }
+            leftTxtBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(isIcon ? R.dimen.base_action_bar_btn_icon_size : R.dimen.base_action_bar_btn_size));
             setOnLeftClickListener(listener);
             setMiddleContainerMargin(llLeftContainer, true);
         }
@@ -434,11 +430,9 @@ public class SuperActionBar extends RelativeLayout {
     }
 
     public SuperActionBar setRightTxtBtn(CharSequence text, boolean isIcon, OnClickListener listener) {
-        if (rightTxtBtn != null) {
+        if (rightTxtBtn != null && !TextUtils.isEmpty(text)) {
             rightTxtBtn.setText(text);
-            if (isIcon) {
-                rightTxtBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelOffset(R.dimen.base_action_bar_btn_icon_size));
-            }
+            rightTxtBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(isIcon ? R.dimen.base_action_bar_btn_icon_size : R.dimen.base_action_bar_btn_size));
             setOnRightClickListener(listener);
             setMiddleContainerMargin(llRightContainer, false);
         }

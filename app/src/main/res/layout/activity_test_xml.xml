@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/genuine_action_bar_color_background"
-        app:super_action_bar_left_text="Test"
         app:super_action_bar_style="title_left_txt"
         app:super_action_bar_title_text="标题" />
 
