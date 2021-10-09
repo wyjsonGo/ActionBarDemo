@@ -13,7 +13,7 @@ public class Test3Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        getSuperActionBar().initActionBarForBothTxt("标题", R.string.icon_setting, true, view -> {
+        getSuperActionBar().initActionBarForBothIcon("标题", R.string.icon_setting, view -> {
             Toast.makeText(this, "设置", Toast.LENGTH_SHORT).show();
         });
 
