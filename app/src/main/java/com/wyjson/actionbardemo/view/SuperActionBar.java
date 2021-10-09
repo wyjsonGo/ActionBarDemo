@@ -525,8 +525,12 @@ public class SuperActionBar extends RelativeLayout {
         setRightTxtBtn(rightResId, isIcon, rightListener);
     }
 
-    public void initActionBarForBothTxt(CharSequence title, @StringRes int rightResId, boolean isIcon, SuperActionBar.OnClickListener rightListener) {
-        initActionBarForBothTxt(title, new OnActionBarLeftClickListener(), rightResId, isIcon, rightListener);
+    public void initActionBarForBothTxt(CharSequence title, @StringRes int rightResId, SuperActionBar.OnClickListener rightListener) {
+        initActionBarForBothTxt(title, new OnActionBarLeftClickListener(), rightResId, false, rightListener);
+    }
+
+    public void initActionBarForBothIcon(CharSequence title, @StringRes int rightResId, SuperActionBar.OnClickListener rightListener) {
+        initActionBarForBothTxt(title, new OnActionBarLeftClickListener(), rightResId, true, rightListener);
     }
 
     /**

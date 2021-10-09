@@ -20,7 +20,7 @@ public class Test1Activity extends BaseActivity {
 //        getSuperActionBar()
 //                .initStyle(SuperActionBar.Style.TITLE_LEFT_TXT)
 //                .setTitleText("标题a")
-//                .setLeftTxtBtn(R.string.action_bar_left_return_icon, new SuperActionBar.OnClickListener() {
+//                .setLeftTxtBtn(R.string.action_bar_left_return_icon,true, new SuperActionBar.OnClickListener() {
 //                    @Override
 //                    public void onClick(View view) {
 //                        finish();
