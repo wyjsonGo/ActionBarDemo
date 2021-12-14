@@ -384,8 +384,8 @@ public class StatusBarUtils {
         // 内容布局不是 LinearLayout 时,设置padding top
         if (!(contentLayout instanceof LinearLayout) && contentLayout.getChildAt(1) != null) {
             contentLayout.getChildAt(1)
-                    .setPadding(contentLayout.getPaddingLeft(), getStatusBarHeight(activity) + contentLayout.getPaddingTop(),
-                            contentLayout.getPaddingRight(), contentLayout.getPaddingBottom());
+                    .setPaddingRelative(contentLayout.getPaddingStart(), getStatusBarHeight(activity) + contentLayout.getPaddingTop(),
+                            contentLayout.getPaddingEnd(), contentLayout.getPaddingBottom());
         }
         // 设置属性
         setDrawerLayoutProperty(drawerLayout, contentLayout);

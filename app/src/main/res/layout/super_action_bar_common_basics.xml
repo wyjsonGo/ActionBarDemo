@@ -29,8 +29,8 @@
             android:focusable="true"
             android:gravity="center_vertical|start"
             android:orientation="horizontal"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp">
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
 
         </LinearLayout>
 
@@ -67,8 +67,8 @@
             android:focusable="true"
             android:gravity="center_vertical|end"
             android:orientation="horizontal"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp">
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
 
         </LinearLayout>
 
