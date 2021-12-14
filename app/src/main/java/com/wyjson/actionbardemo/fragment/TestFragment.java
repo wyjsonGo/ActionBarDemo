@@ -25,11 +25,6 @@ public class TestFragment extends BaseFragment {
         initActionBar();
     }
 
-    @Override
-    protected int getSuperActionBarId() {
-        return R.id.action_bar_fragment_test;
-    }
-
     private void initActionBar() {
         getSuperActionBar().initActionBarForBothIcon("标题", R.string.icon_setting, new SuperActionBar.OnClickListener() {
             @Override

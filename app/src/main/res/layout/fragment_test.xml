@@ -5,9 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".fragment.TestFragment">
 
-    <include
-        android:id="@+id/action_bar_fragment_test"
-        layout="@layout/include_action_bar" />
+    <include layout="@layout/include_action_bar" />
 
     <TextView
         android:id="@+id/tv_content"
