@@ -15,7 +15,7 @@ public class Test11Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        getSuperActionBar().initActionBarForBothLeftTxtRightImg("标题", R.mipmap.ic_launcher_round, new SuperActionBar.OnClickListener() {
+        getSuperActionBar().initActionBarForBothRightImg("标题", R.mipmap.ic_launcher_round, new SuperActionBar.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(Test11Activity.this, "右边图片按钮的点击事件", Toast.LENGTH_SHORT).show();

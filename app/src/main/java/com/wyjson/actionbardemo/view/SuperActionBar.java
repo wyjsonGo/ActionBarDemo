@@ -629,7 +629,7 @@ public class SuperActionBar extends RelativeLayout {
                 .setRightImgBtn(rightResId, rightListener);
     }
 
-    public void initActionBarForBothLeftTxtRightImg(
+    public void initActionBarForBothRightImg(
             CharSequence title,
             @DrawableRes int rightResId, SuperActionBar.OnClickListener rightListener) {
         initActionBarForBothLeftTxtRightImg(title, R.string.action_bar_left_return_icon, true, new SuperActionBar.OnActionBarLeftClickListener(), rightResId, rightListener);
@@ -655,7 +655,7 @@ public class SuperActionBar extends RelativeLayout {
                 .setRightImgBtn(rightResId, rightListener);
     }
 
-    public void initActionBarForBothLeftImgRightTxt(
+    public void initActionBarForBothRightTxt(
             CharSequence title,
             @StringRes int rightResId, boolean isIcon, SuperActionBar.OnClickListener rightListener) {
         initActionBarForBothLeftImgRightTxt(title, R.drawable.super_action_bar_back_bg_selector, new SuperActionBar.OnActionBarLeftClickListener(), rightResId, isIcon, rightListener);
