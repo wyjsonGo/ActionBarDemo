@@ -484,9 +484,7 @@ public class SuperActionBar extends RelativeLayout {
      * @param title
      */
     public void initActionBarForLeftIcon(CharSequence title) {
-        initStyle(SuperActionBar.Style.TITLE_LEFT_TXT)
-                .setTitleText(title)
-                .setLeftTxtBtn(R.string.action_bar_left_return_icon, true, new OnActionBarLeftClickListener());
+        initActionBarForLeftIcon(title, 0, new OnActionBarLeftClickListener());
     }
 
     /**
@@ -540,10 +538,7 @@ public class SuperActionBar extends RelativeLayout {
             CharSequence title,
             SuperActionBar.OnClickListener leftListener,
             @StringRes int rightResId, boolean isIcon, SuperActionBar.OnClickListener rightListener) {
-        initStyle(SuperActionBar.Style.TITLE_BOTH_TXT)
-                .setTitleText(title)
-                .setLeftTxtBtn(R.string.action_bar_left_return_icon, true, leftListener)
-                .setRightTxtBtn(rightResId, isIcon, rightListener);
+        initActionBarForBothTxt(title, R.string.action_bar_left_return_icon, true, leftListener, rightResId, isIcon, rightListener);
     }
 
     public void initActionBarForBothTxt(CharSequence title, @StringRes int rightResId, SuperActionBar.OnClickListener rightListener) {
@@ -579,9 +574,7 @@ public class SuperActionBar extends RelativeLayout {
      * @param title
      */
     public void initActionBarForLeftImg(CharSequence title) {
-        initStyle(SuperActionBar.Style.TITLE_LEFT_IMG)
-                .setTitleText(title)
-                .setLeftImgBtn(R.drawable.super_action_bar_back_bg_selector, new OnActionBarLeftClickListener());
+        initActionBarForLeftImg(title, R.drawable.super_action_bar_back_bg_selector, new OnActionBarLeftClickListener());
     }
 
     /**
@@ -611,6 +604,12 @@ public class SuperActionBar extends RelativeLayout {
                 .setRightImgBtn(resId, listener);
     }
 
+    public void initActionBarForBothImg(
+            CharSequence title,
+            @DrawableRes int rightResId, SuperActionBar.OnClickListener rightListener) {
+        initActionBarForBothImg(title, R.drawable.super_action_bar_back_bg_selector, new SuperActionBar.OnActionBarLeftClickListener(), rightResId, rightListener);
+    }
+
     /**
      * 标题 + 两侧图片按钮 + 点击事件
      *
@@ -629,6 +628,59 @@ public class SuperActionBar extends RelativeLayout {
                 .setLeftImgBtn(leftResId, leftListener)
                 .setRightImgBtn(rightResId, rightListener);
     }
+
+    public void initActionBarForBothLeftTxtRightImg(
+            CharSequence title,
+            @DrawableRes int rightResId, SuperActionBar.OnClickListener rightListener) {
+        initActionBarForBothLeftTxtRightImg(title, R.string.action_bar_left_return_icon, true, new SuperActionBar.OnActionBarLeftClickListener(), rightResId, rightListener);
+    }
+
+    /**
+     * 标题 + 左侧文字,右侧图片按钮 + 点击事件
+     *
+     * @param title
+     * @param leftResId
+     * @param isLeftIcon
+     * @param leftListener
+     * @param rightResId
+     * @param rightListener
+     */
+    public void initActionBarForBothLeftTxtRightImg(
+            CharSequence title,
+            @StringRes int leftResId, boolean isLeftIcon, SuperActionBar.OnClickListener leftListener,
+            @DrawableRes int rightResId, SuperActionBar.OnClickListener rightListener) {
+        initStyle(SuperActionBar.Style.TITLE_LEFT_TXT_RIGHT_IMG)
+                .setTitleText(title)
+                .setLeftTxtBtn(leftResId, isLeftIcon, leftListener)
+                .setRightImgBtn(rightResId, rightListener);
+    }
+
+    public void initActionBarForBothLeftImgRightTxt(
+            CharSequence title,
+            @StringRes int rightResId, boolean isIcon, SuperActionBar.OnClickListener rightListener) {
+        initActionBarForBothLeftImgRightTxt(title, R.drawable.super_action_bar_back_bg_selector, new SuperActionBar.OnActionBarLeftClickListener(), rightResId, isIcon, rightListener);
+    }
+
+    /**
+     * 标题 + 左侧图片按钮,右侧文字 + 点击事件
+     *
+     * @param title
+     * @param leftResId
+     * @param leftListener
+     * @param rightResId
+     * @param isRightIcon
+     * @param rightListener
+     */
+    public void initActionBarForBothLeftImgRightTxt(
+            CharSequence title,
+            @DrawableRes int leftResId, SuperActionBar.OnClickListener leftListener,
+            @StringRes int rightResId, boolean isRightIcon, SuperActionBar.OnClickListener rightListener) {
+        initStyle(Style.TITLE_LEFT_IMG_RIGHT_TXT)
+                .setTitleText(title)
+                .setLeftImgBtn(leftResId, leftListener)
+                .setRightTxtBtn(rightResId, isRightIcon, rightListener);
+    }
+
 
     /**
      * ActionBar左侧按钮的点击事件

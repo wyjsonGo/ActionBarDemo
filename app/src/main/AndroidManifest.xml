@@ -28,6 +28,7 @@
         <activity android:name=".activity.Test8Activity"/>
         <activity android:name=".activity.Test9Activity"/>
         <activity android:name=".activity.Test10Activity"/>
+        <activity android:name=".activity.Test11Activity"/>
         <activity android:name=".activity.IconActivity"/>
 
     </application>
