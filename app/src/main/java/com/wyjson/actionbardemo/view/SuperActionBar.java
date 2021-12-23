@@ -360,7 +360,7 @@ public class SuperActionBar extends RelativeLayout {
 
     //<editor-fold desc="set">
     public SuperActionBar setTitleText(CharSequence title) {
-        if (tvTitle != null && !TextUtils.isEmpty(title))
+        if (tvTitle != null)
             tvTitle.setText(title);
         return this;
     }
