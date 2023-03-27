@@ -45,9 +45,9 @@ public class SuperActionBar2 extends RelativeLayout {
 
     private OnClickListener mLeftClickListener, mRightClickListener;
 
-    private ImageButton leftImgBtn, rightImgBtn;
+    private ImageButton ibLeft, ibRight;
 
-    private TextView leftTxtBtn, rightTxtBtn;
+    private TextView tvLeft, tvRight;
 
     private final @DrawableRes
     int iconLeft = R.drawable.super_action_bar_back_white_selector;
@@ -144,24 +144,24 @@ public class SuperActionBar2 extends RelativeLayout {
 
                 // ---------------------------------------------------------------------------------
                 @ColorInt int leftTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_left_textColor, 0);
-                if (leftTextColor != 0 && leftTxtBtn != null)
-                    leftTxtBtn.setTextColor(leftTextColor);
+                if (leftTextColor != 0 && tvLeft != null)
+                    tvLeft.setTextColor(leftTextColor);
 
                 @ColorInt int rightTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_right_textColor, 0);
-                if (rightTextColor != 0 && rightTxtBtn != null)
-                    rightTxtBtn.setTextColor(rightTextColor);
+                if (rightTextColor != 0 && tvRight != null)
+                    tvRight.setTextColor(rightTextColor);
 
                 @ColorInt int titleTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_title_textColor, 0);
                 if (titleTextColor != 0 && tvTitle != null)
                     tvTitle.setTextColor(titleTextColor);
 
                 float leftTextSize = ta.getDimension(R.styleable.SuperActionBar_super_action_bar_left_textSize, 0);
-                if (leftTextSize != 0 && leftTxtBtn != null)
-                    leftTxtBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, leftTextSize);
+                if (leftTextSize != 0 && tvLeft != null)
+                    tvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, leftTextSize);
 
                 float rightTextSize = ta.getDimension(R.styleable.SuperActionBar_super_action_bar_right_textSize, 0);
-                if (rightTextSize != 0 && rightTxtBtn != null)
-                    rightTxtBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, rightTextSize);
+                if (rightTextSize != 0 && tvRight != null)
+                    tvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, rightTextSize);
 
                 float titleTextSize = ta.getDimension(R.styleable.SuperActionBar_super_action_bar_title_textSize, 0);
                 if (titleTextSize != 0 && tvTitle != null)
@@ -245,8 +245,8 @@ public class SuperActionBar2 extends RelativeLayout {
      * 左侧图片按钮
      */
     private void initStyleLeftImg() {
-        leftImgBtn = (ImageButton) mInflater.inflate(R.layout.super_action_bar_common_left_right_img_btn, null);
-        llLeftContainer.addView(leftImgBtn);
+        ibLeft = (ImageButton) mInflater.inflate(R.layout.super_action_bar_common_img_btn, null);
+        llLeftContainer.addView(ibLeft);
         llLeftContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -260,8 +260,8 @@ public class SuperActionBar2 extends RelativeLayout {
      * 右侧图片按钮
      */
     private void initStyleRightImg() {
-        rightImgBtn = (ImageButton) mInflater.inflate(R.layout.super_action_bar_common_left_right_img_btn, null);
-        llRightContainer.addView(rightImgBtn);
+        ibRight = (ImageButton) mInflater.inflate(R.layout.super_action_bar_common_img_btn, null);
+        llRightContainer.addView(ibRight);
         llRightContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -275,8 +275,8 @@ public class SuperActionBar2 extends RelativeLayout {
      * 左侧文字按钮
      */
     private void initStyleLeftTxt() {
-        leftTxtBtn = (TextView) mInflater.inflate(R.layout.super_action_bar_common_left_right_txt_btn, null);
-        llLeftContainer.addView(leftTxtBtn);
+        tvLeft = (TextView) mInflater.inflate(R.layout.super_action_bar_common_txt, null);
+        llLeftContainer.addView(tvLeft);
         llLeftContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -290,8 +290,8 @@ public class SuperActionBar2 extends RelativeLayout {
      * 右侧文字按钮
      */
     private void initStyleRightTxt() {
-        rightTxtBtn = (TextView) mInflater.inflate(R.layout.super_action_bar_common_left_right_txt_btn, null);
-        llRightContainer.addView(rightTxtBtn);
+        tvRight = (TextView) mInflater.inflate(R.layout.super_action_bar_common_txt, null);
+        llRightContainer.addView(tvRight);
         llRightContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -328,20 +328,20 @@ public class SuperActionBar2 extends RelativeLayout {
         return tvTitle;
     }
 
-    public ImageButton getLeftImgBtn() {
-        return leftImgBtn;
+    public ImageButton getIbLeft() {
+        return ibLeft;
     }
 
-    public ImageButton getRightImgBtn() {
-        return rightImgBtn;
+    public ImageButton getIbRight() {
+        return ibRight;
     }
 
-    public TextView getLeftTxtBtn() {
-        return leftTxtBtn;
+    public TextView getTvLeft() {
+        return tvLeft;
     }
 
-    public TextView getRightTxtBtn() {
-        return rightTxtBtn;
+    public TextView getTvRight() {
+        return tvRight;
     }
 
     public View getActionBarLine() {
@@ -383,8 +383,8 @@ public class SuperActionBar2 extends RelativeLayout {
     }
 
     public SuperActionBar2 setLeftImgBtn(Drawable drawable, OnClickListener listener) {
-        if (leftImgBtn != null && drawable != null) {
-            leftImgBtn.setImageDrawable(drawable);
+        if (ibLeft != null && drawable != null) {
+            ibLeft.setImageDrawable(drawable);
             setOnLeftClickListener(listener);
             setMiddleContainerMargin(llLeftContainer, true);
         }
@@ -396,8 +396,8 @@ public class SuperActionBar2 extends RelativeLayout {
     }
 
     public SuperActionBar2 setRightImgBtn(Drawable drawable, OnClickListener listener) {
-        if (rightImgBtn != null && drawable != null) {
-            rightImgBtn.setImageDrawable(drawable);
+        if (ibRight != null && drawable != null) {
+            ibRight.setImageDrawable(drawable);
             setOnRightClickListener(listener);
             setMiddleContainerMargin(llRightContainer, false);
         }
@@ -409,9 +409,9 @@ public class SuperActionBar2 extends RelativeLayout {
     }
 
     public SuperActionBar2 setLeftTxtBtn(CharSequence text, OnClickListener listener) {
-        if (leftTxtBtn != null && !TextUtils.isEmpty(text)) {
-            leftTxtBtn.setText(text);
-            leftTxtBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, R.dimen.super_action_bar_btn_size);
+        if (tvLeft != null && !TextUtils.isEmpty(text)) {
+            tvLeft.setText(text);
+            tvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, R.dimen.super_action_bar_btn_size);
             setOnLeftClickListener(listener);
             setMiddleContainerMargin(llLeftContainer, true);
         }
@@ -423,9 +423,9 @@ public class SuperActionBar2 extends RelativeLayout {
     }
 
     public SuperActionBar2 setRightTxtBtn(CharSequence text, OnClickListener listener) {
-        if (rightTxtBtn != null && !TextUtils.isEmpty(text)) {
-            rightTxtBtn.setText(text);
-            rightTxtBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.super_action_bar_btn_size));
+        if (tvRight != null && !TextUtils.isEmpty(text)) {
+            tvRight.setText(text);
+            tvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.super_action_bar_btn_size));
             setOnRightClickListener(listener);
             setMiddleContainerMargin(llRightContainer, false);
         }

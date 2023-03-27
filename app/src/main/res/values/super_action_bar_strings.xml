@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
+    <!-- iconfont版本 -->
     <string name="super_action_bar_left_return_icon">&#xe62e;</string> <!-- return -->
 
 </resources>

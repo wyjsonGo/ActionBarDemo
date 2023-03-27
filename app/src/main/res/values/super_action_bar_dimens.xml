@@ -2,12 +2,13 @@
 <resources>
 
     <!-- head文件start -->
-    <dimen name="super_action_bar_height">48.0dip</dimen>
-    <dimen name="super_action_bar_title_size">18.0sp</dimen>
+    <dimen name="super_action_bar_height">48dp</dimen>
+    <dimen name="super_action_bar_title_size">18sp</dimen>
     <dimen name="super_action_bar_btn_size">14sp</dimen>
     <!-- head文件end -->
     <dimen name="super_action_bar_line_height">0dp</dimen>
     <dimen name="super_action_bar_elevation">4dp</dimen>
 
+    <!-- iconfont版本 -->
     <dimen name="super_action_bar_btn_icon_size">20sp</dimen>
 </resources>
