@@ -2,10 +2,10 @@
 <resources>
 
     <!-- head文件 -->
-    <!--<color name="genuine_action_bar_color_background">@android:color/white</color>-->
-    <color name="genuine_action_bar_color_background">@color/theme_color</color>
-    <!--<color name="action_bar_base_color_text">@android:color/black</color>-->
-    <color name="action_bar_base_color_text">@android:color/white</color>
-    <color name="action_bar_base_color_line">#F8F5FB</color>
+    <!--<color name="super_action_bar_background_color">@android:color/white</color>-->
+    <color name="super_action_bar_background_color">@color/theme_color</color>
+    <!--<color name="super_action_bar_base_color_text">@android:color/black</color>-->
+    <color name="super_action_bar_base_color_text">@android:color/white</color>
+    <color name="super_action_bar_base_color_line">#F8F5FB</color>
 
 </resources>

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-    android:src="@mipmap/super_action_bar_back_bg_n"
-    android:tint="@color/action_bar_base_color_text" />

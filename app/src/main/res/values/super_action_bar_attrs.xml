@@ -18,6 +18,7 @@
         <attr name="super_action_bar_title_text" format="string" />
         <attr name="super_action_bar_left_text" format="string" />
         <attr name="super_action_bar_right_text" format="string" />
+        <!-- iconfont版本 -->
         <attr name="super_action_bar_left_icon" format="string" />
         <attr name="super_action_bar_right_icon" format="string" />
 

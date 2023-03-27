@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
-    <string name="action_bar_left_return_icon">&#xe630;</string> <!-- return -->
+    <string name="super_action_bar_left_return_icon">&#xe630;</string> <!-- return -->
 
 </resources>

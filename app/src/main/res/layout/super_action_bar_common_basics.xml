@@ -15,13 +15,13 @@
     <RelativeLayout
         android:id="@+id/common_action_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/base_action_bar_height"
+        android:layout_height="@dimen/super_action_bar_height"
         android:baselineAligned="false"
         android:focusable="true"
         android:gravity="center_vertical">
 
         <LinearLayout
-            android:id="@+id/super_action_bar_ll_container_left"
+            android:id="@+id/ll_container_left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
@@ -35,7 +35,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/super_action_bar_ll_container_middle"
+            android:id="@+id/ll_container_middle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
@@ -52,14 +52,14 @@
                 android:paddingStart="2dp"
                 android:paddingEnd="2dp"
                 android:singleLine="true"
-                android:textColor="@color/action_bar_base_color_text"
-                android:textSize="@dimen/base_action_bar_title_size"
+                android:textColor="@color/super_action_bar_base_color_text"
+                android:textSize="@dimen/super_action_bar_title_size"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/super_action_bar_ll_container_right"
+            android:id="@+id/ll_container_right"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -77,8 +77,8 @@
     <View
         android:id="@+id/v_action_bar_line"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/base_action_bar_line_height"
-        android:background="@color/action_bar_base_color_line"
+        android:layout_height="@dimen/super_action_bar_line_height"
+        android:background="@color/super_action_bar_base_color_line"
         android:visibility="visible" />
 
 </LinearLayout>

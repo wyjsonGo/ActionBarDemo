@@ -4,4 +4,4 @@
     android:layout_height="wrap_content"
     android:contentDescription="@string/app_name"
     android:scaleType="centerInside"
-    android:src="@mipmap/img_test7_middle" />
+    android:src="@drawable/img_test7_middle" />
