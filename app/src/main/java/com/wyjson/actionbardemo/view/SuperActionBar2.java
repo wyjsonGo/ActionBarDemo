@@ -53,7 +53,7 @@ public class SuperActionBar2 extends LinearLayout {
     int iconLeft = R.drawable.super_action_bar_back_white_selector;
 
     public enum Style {// 样式
-        TITLE_ONLY(0x01),
+        TITLE(0x01),
 
         TITLE_LEFT_IMG(0x02),
         TITLE_RIGHT_IMG(0x03),
@@ -210,7 +210,7 @@ public class SuperActionBar2 extends LinearLayout {
         llRightContainer.removeAllViews();
 
         switch (style) {
-            case TITLE_ONLY:
+            case TITLE:
                 break;
             case TITLE_LEFT_IMG:
                 initStyleLeftImg();
@@ -476,7 +476,7 @@ public class SuperActionBar2 extends LinearLayout {
      * @param title
      */
     public void initActionBarForOnlyTitle(CharSequence title) {
-        initStyle(SuperActionBar2.Style.TITLE_ONLY)
+        initStyle(SuperActionBar2.Style.TITLE)
                 .setTitleText(title);
     }
 

@@ -53,7 +53,7 @@ public class SuperActionBar extends LinearLayout {
     int textLeft = R.string.super_action_bar_left_return_icon;
 
     public enum Style {// 样式
-        TITLE_ONLY(0x01),
+        TITLE(0x01),
 
         TITLE_LEFT_IMG(0x02),
         TITLE_RIGHT_IMG(0x03),
@@ -216,7 +216,7 @@ public class SuperActionBar extends LinearLayout {
         llRightContainer.removeAllViews();
 
         switch (style) {
-            case TITLE_ONLY:
+            case TITLE:
                 break;
             case TITLE_LEFT_IMG:
                 initStyleLeftImg();
@@ -484,7 +484,7 @@ public class SuperActionBar extends LinearLayout {
      * @param title
      */
     public void initActionBarForOnlyTitle(CharSequence title) {
-        initStyle(SuperActionBar.Style.TITLE_ONLY)
+        initStyle(SuperActionBar.Style.TITLE)
                 .setTitleText(title);
     }
 

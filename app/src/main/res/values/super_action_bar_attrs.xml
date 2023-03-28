@@ -4,7 +4,7 @@
     <declare-styleable name="SuperActionBar">
 
         <attr name="super_action_bar_style">
-            <enum name="title_only" value="0x01" />
+            <enum name="title" value="0x01" />
             <enum name="title_left_img" value="0x02" />
             <enum name="title_right_img" value="0x03" />
             <enum name="title_both_img" value="0x04" />
