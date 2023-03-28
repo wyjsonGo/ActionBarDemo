@@ -14,7 +14,6 @@ public class Test2Activity extends BaseActivity {
         setContentView(R.layout.activity_test);
 
         getSuperActionBar()
-                .initStyleToRightText()
                 .setTitleText("标题")
                 .setRightText(R.string.icon_setting, true, view -> Toast.makeText(this, "设置", Toast.LENGTH_SHORT).show());
 

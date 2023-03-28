@@ -14,7 +14,6 @@ public class Test3Activity extends BaseActivity {
         setContentView(R.layout.activity_test);
 
         getSuperActionBar()
-                .initStyleToBothText()
                 .setTitleText("标题")
                 .setLeftText()
                 .setRightText(R.string.icon_setting, true, view -> Toast.makeText(this, "设置", Toast.LENGTH_SHORT).show());

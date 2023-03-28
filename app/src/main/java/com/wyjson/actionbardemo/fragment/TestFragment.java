@@ -25,7 +25,7 @@ public class TestFragment extends BaseFragment {
     }
 
     private void initActionBar() {
-        getSuperActionBar().initStyleToBothText()
+        getSuperActionBar()
                 .setTitleText("标题")
                 .setLeftText()
                 .setRightText(R.string.icon_setting, true, view -> Toast.makeText(getActivity(), "设置按钮点击事件", Toast.LENGTH_SHORT).show());

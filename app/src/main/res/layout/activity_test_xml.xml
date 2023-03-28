@@ -7,12 +7,11 @@
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
-    <com.wyjson.actionbardemo.view.SuperActionBar
+    <com.wyjson.actionbardemo.view.SuperActionBar2
         android:id="@+id/super_action_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/super_action_bar_background_color"
-        app:super_action_bar_style="title_left_text"
         app:super_action_bar_title_text="标题" />
 
     <TextView

@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.wyjson.actionbardemo.R;
 import com.wyjson.actionbardemo.utils.StatusBarUtils;
-import com.wyjson.actionbardemo.view.SuperActionBar;
+import com.wyjson.actionbardemo.view.SuperActionBar2;
 
 public class BaseActivity extends FragmentActivity {
 
@@ -25,7 +25,7 @@ public class BaseActivity extends FragmentActivity {
 
     }
 
-    public SuperActionBar getSuperActionBar() {
+    public SuperActionBar2 getSuperActionBar() {
         return findViewById(R.id.super_action_bar);
     }
 

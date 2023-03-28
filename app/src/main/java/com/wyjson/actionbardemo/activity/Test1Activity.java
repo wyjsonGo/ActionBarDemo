@@ -15,7 +15,6 @@ public class Test1Activity extends BaseActivity {
          * 链式调用
          */
         getSuperActionBar()
-                .initStyleToLeftText()
                 .setTitleText("标题")
                 .setLeftText();
 

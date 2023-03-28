@@ -15,7 +15,6 @@ public class Test7Activity extends BaseActivity {
         setContentView(R.layout.activity_test);
 
         getSuperActionBar()
-                .initStyleToLeftText()
                 .setLeftText();
         ImageView imageView = (ImageView) LayoutInflater.from(this).inflate(R.layout.test7_action_bar_middle, null);
         getSuperActionBar().getMiddleContainer().removeAllViews();

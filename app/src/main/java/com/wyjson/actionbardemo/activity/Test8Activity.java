@@ -14,7 +14,6 @@ public class Test8Activity extends BaseActivity {
         setContentView(R.layout.activity_test);
 
         getSuperActionBar()
-                .initStyleToBothText()
                 .setTitleText("title")
                 .setLeftImg()
                 .setRightText(R.string.action_bar_right_save, false, view -> Toast.makeText(Test8Activity.this, "保存按钮的点击事件", Toast.LENGTH_SHORT).show());

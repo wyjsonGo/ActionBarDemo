@@ -7,7 +7,7 @@ import androidx.annotation.IdRes;
 import androidx.fragment.app.Fragment;
 
 import com.wyjson.actionbardemo.R;
-import com.wyjson.actionbardemo.view.SuperActionBar;
+import com.wyjson.actionbardemo.view.SuperActionBar2;
 
 /**
  * @author Wyjson
@@ -29,7 +29,7 @@ public class BaseFragment extends Fragment {
         return R.id.super_action_bar;
     }
 
-    protected SuperActionBar getSuperActionBar() {
+    protected SuperActionBar2 getSuperActionBar() {
         return rootView.findViewById(getSuperActionBarId());
     }
 

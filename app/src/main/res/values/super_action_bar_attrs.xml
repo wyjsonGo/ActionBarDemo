@@ -3,18 +3,6 @@
 
     <declare-styleable name="SuperActionBar">
 
-        <attr name="super_action_bar_style">
-            <enum name="title" value="0x01" />
-            <enum name="title_left_img" value="0x02" />
-            <enum name="title_right_img" value="0x03" />
-            <enum name="title_both_img" value="0x04" />
-            <enum name="title_left_text" value="0x05" />
-            <enum name="title_right_text" value="0x06" />
-            <enum name="title_both_text" value="0x07" />
-            <enum name="title_left_img_right_text" value="0x08" />
-            <enum name="title_left_text_right_img" value="0x09" />
-        </attr>
-
         <attr name="super_action_bar_title_text" format="string" />
         <attr name="super_action_bar_left_text" format="string" />
         <attr name="super_action_bar_right_text" format="string" />

@@ -14,7 +14,6 @@ public class Test5Activity extends BaseActivity {
         setContentView(R.layout.activity_test);
 
         getSuperActionBar()
-                .initStyleToLeftText()
                 .setTitleText("标题过长情况,确保不被两边按钮压住!标题过长情况,确保不被两边按钮压住!")
                 .setLeftText();
 

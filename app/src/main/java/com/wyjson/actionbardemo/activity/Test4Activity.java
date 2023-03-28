@@ -14,7 +14,6 @@ public class Test4Activity extends BaseActivity {
         setContentView(R.layout.activity_test);
 
         getSuperActionBar()
-                .initStyleToBothText()
                 .setTitleText("标题")
                 .setLeftText(R.string.icon_close, true, view -> {
                     Toast.makeText(Test4Activity.this, "自定义关闭事件", Toast.LENGTH_SHORT).show();
