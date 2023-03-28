@@ -140,39 +140,39 @@ public class SuperActionBar2 extends LinearLayout {
                 setLeftText(leftText, new OnActionBarLeftClickListener());
 
                 String rightText = ta.getString(R.styleable.SuperActionBar_super_action_bar_right_text);
-                setRightText(rightText, null);
+                setRightText(rightText, mRightClickListener);
 
                 // ---------------------------------------------------------------------------------
                 Drawable leftImg = ta.getDrawable(R.styleable.SuperActionBar_super_action_bar_left_img);
                 setLeftImgBtn(leftImg != null ? leftImg : ContextCompat.getDrawable(getContext(), iconLeft), new OnActionBarLeftClickListener());
 
                 Drawable rightImg = ta.getDrawable(R.styleable.SuperActionBar_super_action_bar_right_img);
-                setLeftImgBtn(rightImg, new OnActionBarLeftClickListener());
+                setRightImgBtn(rightImg, mRightClickListener);
 
                 // ---------------------------------------------------------------------------------
-                @ColorInt int leftTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_left_textColor, 0);
-                if (leftTextColor != 0 && tvLeft != null)
-                    tvLeft.setTextColor(leftTextColor);
-
-                @ColorInt int rightTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_right_textColor, 0);
-                if (rightTextColor != 0 && tvRight != null)
-                    tvRight.setTextColor(rightTextColor);
-
-                @ColorInt int titleTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_title_textColor, 0);
-                if (titleTextColor != 0 && tvTitle != null)
+                @ColorInt int titleTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_title_textColor, -1);
+                if (titleTextColor != -1 && tvTitle != null)
                     tvTitle.setTextColor(titleTextColor);
 
-                float leftTextSize = ta.getDimension(R.styleable.SuperActionBar_super_action_bar_left_textSize, 0);
-                if (leftTextSize != 0 && tvLeft != null)
+                @ColorInt int leftTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_left_textColor, -1);
+                if (leftTextColor != -1 && tvLeft != null)
+                    tvLeft.setTextColor(leftTextColor);
+
+                @ColorInt int rightTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_right_textColor, -1);
+                if (rightTextColor != -1 && tvRight != null)
+                    tvRight.setTextColor(rightTextColor);
+
+                float titleTextSize = ta.getDimension(R.styleable.SuperActionBar_super_action_bar_title_textSize, -1);
+                if (titleTextSize != -1 && tvTitle != null)
+                    tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleTextSize);
+
+                float leftTextSize = ta.getDimension(R.styleable.SuperActionBar_super_action_bar_left_textSize, -1);
+                if (leftTextSize != -1 && tvLeft != null)
                     tvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, leftTextSize);
 
-                float rightTextSize = ta.getDimension(R.styleable.SuperActionBar_super_action_bar_right_textSize, 0);
-                if (rightTextSize != 0 && tvRight != null)
+                float rightTextSize = ta.getDimension(R.styleable.SuperActionBar_super_action_bar_right_textSize, -1);
+                if (rightTextSize != -1 && tvRight != null)
                     tvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, rightTextSize);
-
-                float titleTextSize = ta.getDimension(R.styleable.SuperActionBar_super_action_bar_title_textSize, 0);
-                if (titleTextSize != 0 && tvTitle != null)
-                    tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleTextSize);
 
                 Drawable bg = ta.getDrawable(R.styleable.SuperActionBar_super_action_bar_background);
                 if (bg != null && commonActionBar != null)
@@ -203,8 +203,12 @@ public class SuperActionBar2 extends LinearLayout {
     public SuperActionBar2 initStyle(Style style) {
         if (!isInEditMode()) {
             StatusBarUtils.setStatusBarHeight((Activity) getContext(), vStatusBar);
+            setTitleText(((Activity) getContext()).getTitle().toString());
         }
-        initStyleTitle();
+
+        llLeftContainer.removeAllViews();
+        llRightContainer.removeAllViews();
+
         switch (style) {
             case TITLE_ONLY:
                 break;
@@ -238,14 +242,6 @@ public class SuperActionBar2 extends LinearLayout {
                 break;
         }
         return this;
-    }
-
-    /**
-     * 默认文字标题
-     */
-    private void initStyleTitle() {
-        llLeftContainer.removeAllViews();
-        llRightContainer.removeAllViews();
     }
 
     /**
@@ -385,6 +381,10 @@ public class SuperActionBar2 extends LinearLayout {
         return this;
     }
 
+    public SuperActionBar2 setLeftImgBtn() {
+        return setLeftImgBtn(iconLeft, new OnActionBarLeftClickListener());
+    }
+
     public SuperActionBar2 setLeftImgBtn(@DrawableRes int resId, OnClickListener listener) {
         return setLeftImgBtn(ContextCompat.getDrawable(getContext(), resId), listener);
     }
@@ -411,6 +411,10 @@ public class SuperActionBar2 extends LinearLayout {
         return this;
     }
 
+    public SuperActionBar2 setLeftText(@StringRes int resId) {
+        return setLeftText(resId, new OnActionBarLeftClickListener());
+    }
+
     public SuperActionBar2 setLeftText(@StringRes int resId, OnClickListener listener) {
         return setLeftText(getContext().getString(resId), listener);
     }
@@ -418,7 +422,6 @@ public class SuperActionBar2 extends LinearLayout {
     public SuperActionBar2 setLeftText(CharSequence text, OnClickListener listener) {
         if (tvLeft != null && !TextUtils.isEmpty(text)) {
             tvLeft.setText(text);
-            tvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, R.dimen.super_action_bar_btn_size);
             setOnLeftClickListener(listener);
             setMiddleContainerMargin(llLeftContainer, true);
         }
@@ -432,7 +435,6 @@ public class SuperActionBar2 extends LinearLayout {
     public SuperActionBar2 setRightText(CharSequence text, OnClickListener listener) {
         if (tvRight != null && !TextUtils.isEmpty(text)) {
             tvRight.setText(text);
-            tvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.super_action_bar_btn_size));
             setOnRightClickListener(listener);
             setMiddleContainerMargin(llRightContainer, false);
         }
