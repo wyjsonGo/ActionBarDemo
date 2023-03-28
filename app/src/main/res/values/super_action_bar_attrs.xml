@@ -8,11 +8,11 @@
             <enum name="title_left_img" value="0x02" />
             <enum name="title_right_img" value="0x03" />
             <enum name="title_both_img" value="0x04" />
-            <enum name="title_left_txt" value="0x05" />
-            <enum name="title_right_txt" value="0x06" />
-            <enum name="title_both_txt" value="0x07" />
-            <enum name="title_left_img_right_txt" value="0x08" />
-            <enum name="title_left_txt_right_img" value="0x09" />
+            <enum name="title_left_text" value="0x05" />
+            <enum name="title_right_text" value="0x06" />
+            <enum name="title_both_text" value="0x07" />
+            <enum name="title_left_img_right_text" value="0x08" />
+            <enum name="title_left_text_right_img" value="0x09" />
         </attr>
 
         <attr name="super_action_bar_title_text" format="string" />

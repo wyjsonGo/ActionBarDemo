@@ -15,7 +15,7 @@ public class Test8Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        getSuperActionBar().initActionBarForBothRightTxt("title", R.string.action_bar_right_save, false, new SuperActionBar.OnClickListener() {
+        getSuperActionBar().initActionBarForBothRightText("title", R.string.action_bar_right_save, false, new SuperActionBar.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(Test8Activity.this, "保存按钮的点击事件", Toast.LENGTH_SHORT).show();

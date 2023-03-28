@@ -18,9 +18,9 @@ public class Test1Activity extends BaseActivity {
          * 链式调用
          */
 //        getSuperActionBar()
-//                .initStyle(SuperActionBar.Style.TITLE_LEFT_TXT)
+//                .initStyle(SuperActionBar.Style.TITLE_LEFT_TEXT)
 //                .setTitleText("标题a")
-//                .setLeftTxtBtn(R.string.action_bar_left_return_icon,true, new SuperActionBar.OnClickListener() {
+//                .setLeftText(R.string.action_bar_left_return_icon,true, new SuperActionBar.OnClickListener() {
 //                    @Override
 //                    public void onClick(View view) {
 //                        finish();
