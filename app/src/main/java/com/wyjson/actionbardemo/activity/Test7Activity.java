@@ -14,7 +14,9 @@ public class Test7Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        getSuperActionBar().initActionBarForLeftIcon("标题");
+        getSuperActionBar()
+                .initStyleToLeftText()
+                .setLeftText();
         ImageView imageView = (ImageView) LayoutInflater.from(this).inflate(R.layout.test7_action_bar_middle, null);
         getSuperActionBar().getMiddleContainer().removeAllViews();
         getSuperActionBar().getMiddleContainer().addView(imageView);

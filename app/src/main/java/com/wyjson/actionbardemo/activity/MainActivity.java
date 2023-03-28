@@ -3,10 +3,8 @@ package com.wyjson.actionbardemo.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.wyjson.actionbardemo.R;
-import com.wyjson.actionbardemo.view.SuperActionBar;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -14,7 +12,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        getSuperActionBar().initStyleToTitle(R.string.app_name);
     }
 
     @Override

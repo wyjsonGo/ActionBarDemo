@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.wyjson.actionbardemo.R;
-import com.wyjson.actionbardemo.view.SuperActionBar;
 
 public class TestFragment extends BaseFragment {
 
@@ -26,12 +25,10 @@ public class TestFragment extends BaseFragment {
     }
 
     private void initActionBar() {
-        getSuperActionBar().initActionBarForBothIcon("标题", R.string.icon_setting, new SuperActionBar.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(), "设置按钮点击事件", Toast.LENGTH_SHORT).show();
-            }
-        });
+        getSuperActionBar().initStyleToBothText()
+                .setTitleText("标题")
+                .setLeftText()
+                .setRightText(R.string.icon_setting, true, view -> Toast.makeText(getActivity(), "设置按钮点击事件", Toast.LENGTH_SHORT).show());
     }
 
 }

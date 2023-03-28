@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
@@ -125,7 +126,7 @@ public class SuperActionBar extends LinearLayout {
     private void initAttr(Context context, AttributeSet attrs) {
         if (attrs != null) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SuperActionBar);
-            int styleType = ta.getInteger(R.styleable.SuperActionBar_super_action_bar_style, Style.TITLE_LEFT_IMG.value);
+            int styleType = ta.getInteger(R.styleable.SuperActionBar_super_action_bar_style, Style.TITLE_LEFT_TEXT.value);
             if (styleType != 0) {
                 initStyle(Style.getActionType(styleType));
 
@@ -206,7 +207,7 @@ public class SuperActionBar extends LinearLayout {
      *
      * @param style
      */
-    public SuperActionBar initStyle(Style style) {
+    private SuperActionBar initStyle(Style style) {
         if (!isInEditMode()) {
             StatusBarUtils.setStatusBarHeight((Activity) getContext(), vStatusBar);
             setTitleText(((Activity) getContext()).getTitle().toString());
@@ -367,6 +368,12 @@ public class SuperActionBar extends LinearLayout {
         return this;
     }
 
+    public SuperActionBar setTitleText(@StringRes int resId) {
+        if (tvTitle != null)
+            tvTitle.setText(resId);
+        return this;
+    }
+
     /**
      * 是否打开状态栏高度
      * 默认开启(沉浸式)
@@ -455,7 +462,7 @@ public class SuperActionBar extends LinearLayout {
             @Override
             public void onGlobalLayout() {
                 layoutContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) llMiddleContainer.getLayoutParams();
+                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) llMiddleContainer.getLayoutParams();
                 if (isLeft) {
                     lp.leftMargin = lp.rightMargin <= layoutContainer.getWidth() ? layoutContainer.getWidth() : lp.rightMargin;
                     lp.rightMargin = lp.leftMargin;
@@ -478,217 +485,44 @@ public class SuperActionBar extends LinearLayout {
 
     //<editor-fold desc="java use">
 
-    /**
-     * 只有标题
-     *
-     * @param title
-     */
-    public void initActionBarForOnlyTitle(CharSequence title) {
-        initStyle(SuperActionBar.Style.TITLE)
-                .setTitleText(title);
+    public SuperActionBar initStyleToTitle(CharSequence title) {
+        return initStyle(Style.TITLE).setTitleText(title);
     }
 
-    /**
-     * 标题 + 左侧Icon按钮
-     *
-     * @param title
-     */
-    public void initActionBarForLeftIcon(CharSequence title) {
-        initActionBarForLeftIcon(title, 0, new OnActionBarLeftClickListener());
+    public SuperActionBar initStyleToTitle(@StringRes int resId) {
+        return initStyle(Style.TITLE).setTitleText(resId);
     }
 
-    /**
-     * 标题 + 左侧Icon按钮 + 点击事件
-     *
-     * @param title
-     * @param icon
-     * @param listener
-     */
-    public void initActionBarForLeftIcon(CharSequence title, @StringRes int icon, SuperActionBar.OnClickListener listener) {
-        initStyle(SuperActionBar.Style.TITLE_LEFT_TEXT)
-                .setTitleText(title)
-                .setLeftText(icon != 0 ? icon : textLeft, true, listener);
+    public SuperActionBar initStyleToLeftImg() {
+        return initStyle(Style.TITLE_LEFT_IMG);
     }
 
-    /**
-     * 标题 + 右侧Icon按钮 + 点击事件
-     *
-     * @param title
-     * @param icon
-     * @param listener
-     */
-    public void initActionBarForRightIcon(CharSequence title, @StringRes int icon, SuperActionBar.OnClickListener listener) {
-        initStyle(SuperActionBar.Style.TITLE_RIGHT_TEXT)
-                .setTitleText(title)
-                .setRightText(icon, true, listener);
+    public SuperActionBar initStyleToRightImg() {
+        return initStyle(Style.TITLE_RIGHT_IMG);
     }
 
-    /**
-     * 标题 + 右侧文字按钮 + 点击事件
-     *
-     * @param title
-     * @param resId
-     * @param listener
-     */
-    public void initActionBarForRightText(CharSequence title, @StringRes int resId, SuperActionBar.OnClickListener listener) {
-        initStyle(SuperActionBar.Style.TITLE_RIGHT_TEXT)
-                .setTitleText(title)
-                .setRightText(resId, false, listener);
+    public SuperActionBar initStyleToBothImg() {
+        return initStyle(Style.TITLE_BOTH_IMG);
     }
 
-    /**
-     * 标题 + 两侧文字按钮 + 点击事件
-     *
-     * @param title
-     * @param leftListener
-     * @param rightResId
-     * @param rightListener
-     */
-    public void initActionBarForBothText(
-            CharSequence title,
-            SuperActionBar.OnClickListener leftListener,
-            @StringRes int rightResId, boolean isIcon, SuperActionBar.OnClickListener rightListener) {
-        initActionBarForBothText(title, textLeft, true, leftListener, rightResId, isIcon, rightListener);
+    public SuperActionBar initStyleToLeftText() {
+        return initStyle(Style.TITLE_LEFT_TEXT);
     }
 
-    public void initActionBarForBothText(CharSequence title, @StringRes int rightResId, SuperActionBar.OnClickListener rightListener) {
-        initActionBarForBothText(title, new OnActionBarLeftClickListener(), rightResId, false, rightListener);
+    public SuperActionBar initStyleToRightText() {
+        return initStyle(Style.TITLE_RIGHT_TEXT);
     }
 
-    public void initActionBarForBothIcon(CharSequence title, @StringRes int rightResId, SuperActionBar.OnClickListener rightListener) {
-        initActionBarForBothText(title, new OnActionBarLeftClickListener(), rightResId, true, rightListener);
+    public SuperActionBar initStyleToBothText() {
+        return initStyle(Style.TITLE_BOTH_TEXT);
     }
 
-    /**
-     * 标题 + 两侧文字按钮 + 点击事件
-     *
-     * @param title
-     * @param leftResId
-     * @param leftListener
-     * @param rightResId
-     * @param rightListener
-     */
-    public void initActionBarForBothText(
-            CharSequence title,
-            @StringRes int leftResId, boolean isLeftIcon, SuperActionBar.OnClickListener leftListener,
-            @StringRes int rightResId, boolean isRightIcon, SuperActionBar.OnClickListener rightListener) {
-        initStyle(SuperActionBar.Style.TITLE_BOTH_TEXT)
-                .setTitleText(title)
-                .setLeftText(leftResId, isLeftIcon, leftListener)
-                .setRightText(rightResId, isRightIcon, rightListener);
+    public SuperActionBar initStyleToLeftImgRightText() {
+        return initStyle(Style.TITLE_LEFT_IMG_RIGHT_TEXT);
     }
 
-    /**
-     * 标题 + 左侧图片按钮
-     *
-     * @param title
-     */
-    public void initActionBarForLeftImg(CharSequence title) {
-        initActionBarForLeftImg(title, iconLeft, new OnActionBarLeftClickListener());
-    }
-
-    /**
-     * 标题 + 左侧图片按钮 + 点击事件
-     *
-     * @param title
-     * @param resId
-     * @param listener
-     */
-    public void initActionBarForLeftImg(CharSequence title, @DrawableRes int resId, SuperActionBar.OnClickListener listener) {
-        initStyle(SuperActionBar.Style.TITLE_LEFT_IMG)
-                .setTitleText(title)
-                .setLeftImg(resId, listener);
-    }
-
-    /**
-     * 标题 + 右侧图片按钮 + 点击事件
-     *
-     * @param title
-     * @param resId
-     * @param promptResId
-     * @param listener
-     */
-    public void initActionBarForRightImg(CharSequence title, @DrawableRes int resId, @StringRes int promptResId, SuperActionBar.OnClickListener listener) {
-        initStyle(SuperActionBar.Style.TITLE_RIGHT_IMG)
-                .setTitleText(title)
-                .setRightImg(resId, listener);
-    }
-
-    public void initActionBarForBothImg(
-            CharSequence title,
-            @DrawableRes int rightResId, SuperActionBar.OnClickListener rightListener) {
-        initActionBarForBothImg(title, iconLeft, new SuperActionBar.OnActionBarLeftClickListener(), rightResId, rightListener);
-    }
-
-    /**
-     * 标题 + 两侧图片按钮 + 点击事件
-     *
-     * @param title
-     * @param leftResId
-     * @param leftListener
-     * @param rightResId
-     * @param rightListener
-     */
-    public void initActionBarForBothImg(
-            CharSequence title,
-            @DrawableRes int leftResId, SuperActionBar.OnClickListener leftListener,
-            @DrawableRes int rightResId, SuperActionBar.OnClickListener rightListener) {
-        initStyle(SuperActionBar.Style.TITLE_BOTH_IMG)
-                .setTitleText(title)
-                .setLeftImg(leftResId, leftListener)
-                .setRightImg(rightResId, rightListener);
-    }
-
-    public void initActionBarForBothRightImg(
-            CharSequence title,
-            @DrawableRes int rightResId, SuperActionBar.OnClickListener rightListener) {
-        initActionBarForBothLeftTextRightImg(title, textLeft, true, new SuperActionBar.OnActionBarLeftClickListener(), rightResId, rightListener);
-    }
-
-    /**
-     * 标题 + 左侧文字,右侧图片按钮 + 点击事件
-     *
-     * @param title
-     * @param leftResId
-     * @param isLeftIcon
-     * @param leftListener
-     * @param rightResId
-     * @param rightListener
-     */
-    public void initActionBarForBothLeftTextRightImg(
-            CharSequence title,
-            @StringRes int leftResId, boolean isLeftIcon, SuperActionBar.OnClickListener leftListener,
-            @DrawableRes int rightResId, SuperActionBar.OnClickListener rightListener) {
-        initStyle(SuperActionBar.Style.TITLE_LEFT_TEXT_RIGHT_IMG)
-                .setTitleText(title)
-                .setLeftText(leftResId, isLeftIcon, leftListener)
-                .setRightImg(rightResId, rightListener);
-    }
-
-    public void initActionBarForBothRightText(
-            CharSequence title,
-            @StringRes int rightResId, boolean isIcon, SuperActionBar.OnClickListener rightListener) {
-        initActionBarForBothLeftImgRightText(title, iconLeft, new SuperActionBar.OnActionBarLeftClickListener(), rightResId, isIcon, rightListener);
-    }
-
-    /**
-     * 标题 + 左侧图片按钮,右侧文字 + 点击事件
-     *
-     * @param title
-     * @param leftResId
-     * @param leftListener
-     * @param rightResId
-     * @param isRightIcon
-     * @param rightListener
-     */
-    public void initActionBarForBothLeftImgRightText(
-            CharSequence title,
-            @DrawableRes int leftResId, SuperActionBar.OnClickListener leftListener,
-            @StringRes int rightResId, boolean isRightIcon, SuperActionBar.OnClickListener rightListener) {
-        initStyle(Style.TITLE_LEFT_IMG_RIGHT_TEXT)
-                .setTitleText(title)
-                .setLeftImg(leftResId, leftListener)
-                .setRightText(rightResId, isRightIcon, rightListener);
+    public SuperActionBar initStyleToLeftTextRightImg() {
+        return initStyle(Style.TITLE_LEFT_TEXT_RIGHT_IMG);
     }
 
     /**

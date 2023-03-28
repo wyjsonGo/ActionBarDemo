@@ -15,7 +15,7 @@ public class Test9Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        getSuperActionBar().initActionBarForOnlyTitle("标题");
+        getSuperActionBar().initStyleToTitle("标题");
         getSuperActionBar().switchStatusBarHeight(false);
 
         ((TextView) findViewById(R.id.tv_content)).setText("关闭沉浸式状态栏,使用默认系统的");

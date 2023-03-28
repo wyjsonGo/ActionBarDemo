@@ -13,9 +13,11 @@ public class Test3Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        getSuperActionBar().initActionBarForBothIcon("标题", R.string.icon_setting, view -> {
-            Toast.makeText(this, "设置", Toast.LENGTH_SHORT).show();
-        });
+        getSuperActionBar()
+                .initStyleToBothText()
+                .setTitleText("标题")
+                .setLeftText()
+                .setRightText(R.string.icon_setting, true, view -> Toast.makeText(this, "设置", Toast.LENGTH_SHORT).show());
 
         ((TextView) findViewById(R.id.tv_content)).setText("标题,左右按钮");
 

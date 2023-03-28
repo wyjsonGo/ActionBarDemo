@@ -20,7 +20,9 @@ public class Test6Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        getSuperActionBar().initActionBarForLeftIcon(null);
+        getSuperActionBar()
+                .initStyleToLeftText()
+                .setLeftText();
         AlwaysMarqueeTextView tvTitle = (AlwaysMarqueeTextView) LayoutInflater.from(this).inflate(R.layout.test6_action_bar_middle, null);
         tvTitle.setText("标题过长情况,走马灯效果&标题过长情况,走马灯效果");
         getSuperActionBar().getMiddleContainer().removeAllViews();

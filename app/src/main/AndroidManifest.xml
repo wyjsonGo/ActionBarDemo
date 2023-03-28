@@ -18,18 +18,20 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.Test1Activity"/>
-        <activity android:name=".activity.Test2Activity"/>
-        <activity android:name=".activity.Test3Activity"/>
-        <activity android:name=".activity.Test4Activity"/>
-        <activity android:name=".activity.Test5Activity"/>
-        <activity android:name=".activity.Test6Activity"/>
-        <activity android:name=".activity.Test7Activity"/>
-        <activity android:name=".activity.Test8Activity"/>
-        <activity android:name=".activity.Test9Activity"/>
-        <activity android:name=".activity.Test10Activity"/>
-        <activity android:name=".activity.Test11Activity"/>
-        <activity android:name=".activity.IconActivity"/>
+        <activity android:name=".activity.Test1Activity" />
+        <activity android:name=".activity.Test2Activity" />
+        <activity android:name=".activity.Test3Activity" />
+        <activity android:name=".activity.Test4Activity" />
+        <activity android:name=".activity.Test5Activity" />
+        <activity android:name=".activity.Test6Activity" />
+        <activity android:name=".activity.Test7Activity" />
+        <activity android:name=".activity.Test8Activity" />
+        <activity android:name=".activity.Test9Activity" />
+        <activity android:name=".activity.Test10Activity" />
+        <activity android:name=".activity.Test11Activity" />
+        <activity
+            android:name=".activity.IconActivity"
+            android:label="Icon" />
 
     </application>
 
