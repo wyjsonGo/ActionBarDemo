@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -45,7 +45,7 @@ public class SuperActionBar2 extends LinearLayout {
 
     private OnClickListener mLeftClickListener, mRightClickListener;
 
-    private ImageButton ibLeft, ibRight;
+    private ImageView ivLeft, ivRight;
 
     private TextView tvLeft, tvRight;
 
@@ -144,10 +144,10 @@ public class SuperActionBar2 extends LinearLayout {
 
                 // ---------------------------------------------------------------------------------
                 Drawable leftImg = ta.getDrawable(R.styleable.SuperActionBar_super_action_bar_left_img);
-                setLeftImgBtn(leftImg != null ? leftImg : ContextCompat.getDrawable(getContext(), iconLeft), new OnActionBarLeftClickListener());
+                setLeftImg(leftImg != null ? leftImg : ContextCompat.getDrawable(getContext(), iconLeft), new OnActionBarLeftClickListener());
 
                 Drawable rightImg = ta.getDrawable(R.styleable.SuperActionBar_super_action_bar_right_img);
-                setRightImgBtn(rightImg, mRightClickListener);
+                setRightImg(rightImg, mRightClickListener);
 
                 // ---------------------------------------------------------------------------------
                 @ColorInt int titleTextColor = ta.getColor(R.styleable.SuperActionBar_super_action_bar_title_textColor, -1);
@@ -248,8 +248,8 @@ public class SuperActionBar2 extends LinearLayout {
      * 左侧图片按钮
      */
     private void initStyleLeftImg() {
-        ibLeft = (ImageButton) mInflater.inflate(R.layout.super_action_bar_common_img_btn, null);
-        llLeftContainer.addView(ibLeft);
+        ivLeft = (ImageView) mInflater.inflate(R.layout.super_action_bar_common_img, null);
+        llLeftContainer.addView(ivLeft);
         llLeftContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -263,8 +263,8 @@ public class SuperActionBar2 extends LinearLayout {
      * 右侧图片按钮
      */
     private void initStyleRightImg() {
-        ibRight = (ImageButton) mInflater.inflate(R.layout.super_action_bar_common_img_btn, null);
-        llRightContainer.addView(ibRight);
+        ivRight = (ImageView) mInflater.inflate(R.layout.super_action_bar_common_img, null);
+        llRightContainer.addView(ivRight);
         llRightContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -331,12 +331,12 @@ public class SuperActionBar2 extends LinearLayout {
         return tvTitle;
     }
 
-    public ImageButton getIbLeft() {
-        return ibLeft;
+    public ImageView getIvLeft() {
+        return ivLeft;
     }
 
-    public ImageButton getIbRight() {
-        return ibRight;
+    public ImageView getIvRight() {
+        return ivRight;
     }
 
     public TextView getTvLeft() {
@@ -381,30 +381,30 @@ public class SuperActionBar2 extends LinearLayout {
         return this;
     }
 
-    public SuperActionBar2 setLeftImgBtn() {
-        return setLeftImgBtn(iconLeft, new OnActionBarLeftClickListener());
+    public SuperActionBar2 setLeftImg() {
+        return setLeftImg(iconLeft, new OnActionBarLeftClickListener());
     }
 
-    public SuperActionBar2 setLeftImgBtn(@DrawableRes int resId, OnClickListener listener) {
-        return setLeftImgBtn(ContextCompat.getDrawable(getContext(), resId), listener);
+    public SuperActionBar2 setLeftImg(@DrawableRes int resId, OnClickListener listener) {
+        return setLeftImg(ContextCompat.getDrawable(getContext(), resId), listener);
     }
 
-    public SuperActionBar2 setLeftImgBtn(Drawable drawable, OnClickListener listener) {
-        if (ibLeft != null && drawable != null) {
-            ibLeft.setImageDrawable(drawable);
+    public SuperActionBar2 setLeftImg(Drawable drawable, OnClickListener listener) {
+        if (ivLeft != null && drawable != null) {
+            ivLeft.setImageDrawable(drawable);
             setOnLeftClickListener(listener);
             setMiddleContainerMargin(llLeftContainer, true);
         }
         return this;
     }
 
-    public SuperActionBar2 setRightImgBtn(@DrawableRes int resId, OnClickListener listener) {
-        return setRightImgBtn(ContextCompat.getDrawable(getContext(), resId), listener);
+    public SuperActionBar2 setRightImg(@DrawableRes int resId, OnClickListener listener) {
+        return setRightImg(ContextCompat.getDrawable(getContext(), resId), listener);
     }
 
-    public SuperActionBar2 setRightImgBtn(Drawable drawable, OnClickListener listener) {
-        if (ibRight != null && drawable != null) {
-            ibRight.setImageDrawable(drawable);
+    public SuperActionBar2 setRightImg(Drawable drawable, OnClickListener listener) {
+        if (ivRight != null && drawable != null) {
+            ivRight.setImageDrawable(drawable);
             setOnRightClickListener(listener);
             setMiddleContainerMargin(llRightContainer, false);
         }
@@ -499,7 +499,7 @@ public class SuperActionBar2 extends LinearLayout {
     public void initActionBarForLeftIcon(CharSequence title, @DrawableRes int icon, SuperActionBar2.OnClickListener listener) {
         initStyle(Style.TITLE_LEFT_IMG)
                 .setTitleText(title)
-                .setLeftImgBtn(icon != 0 ? icon : iconLeft, listener);
+                .setLeftImg(icon != 0 ? icon : iconLeft, listener);
     }
 
     /**
@@ -589,7 +589,7 @@ public class SuperActionBar2 extends LinearLayout {
     public void initActionBarForLeftImg(CharSequence title, @DrawableRes int resId, SuperActionBar2.OnClickListener listener) {
         initStyle(SuperActionBar2.Style.TITLE_LEFT_IMG)
                 .setTitleText(title)
-                .setLeftImgBtn(resId, listener);
+                .setLeftImg(resId, listener);
     }
 
     /**
@@ -603,7 +603,7 @@ public class SuperActionBar2 extends LinearLayout {
     public void initActionBarForRightImg(CharSequence title, @DrawableRes int resId, @StringRes int promptResId, SuperActionBar2.OnClickListener listener) {
         initStyle(SuperActionBar2.Style.TITLE_RIGHT_IMG)
                 .setTitleText(title)
-                .setRightImgBtn(resId, listener);
+                .setRightImg(resId, listener);
     }
 
     public void initActionBarForBothImg(
@@ -627,8 +627,8 @@ public class SuperActionBar2 extends LinearLayout {
             @DrawableRes int rightResId, SuperActionBar2.OnClickListener rightListener) {
         initStyle(SuperActionBar2.Style.TITLE_BOTH_IMG)
                 .setTitleText(title)
-                .setLeftImgBtn(leftResId, leftListener)
-                .setRightImgBtn(rightResId, rightListener);
+                .setLeftImg(leftResId, leftListener)
+                .setRightImg(rightResId, rightListener);
     }
 
     public void initActionBarForBothRightImg(
@@ -653,7 +653,7 @@ public class SuperActionBar2 extends LinearLayout {
         initStyle(SuperActionBar2.Style.TITLE_LEFT_TEXT_RIGHT_IMG)
                 .setTitleText(title)
                 .setLeftText(leftResId, leftListener)
-                .setRightImgBtn(rightResId, rightListener);
+                .setRightImg(rightResId, rightListener);
     }
 
     public void initActionBarForBothRightText(
@@ -677,7 +677,7 @@ public class SuperActionBar2 extends LinearLayout {
             @StringRes int rightResId, SuperActionBar2.OnClickListener rightListener) {
         initStyle(Style.TITLE_LEFT_IMG_RIGHT_TEXT)
                 .setTitleText(title)
-                .setLeftImgBtn(leftResId, leftListener)
+                .setLeftImg(leftResId, leftListener)
                 .setRightText(rightResId, rightListener);
     }
 
