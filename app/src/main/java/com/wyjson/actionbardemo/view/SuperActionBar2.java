@@ -33,7 +33,7 @@ import com.wyjson.actionbardemo.utils.StatusBarUtils;
  * @version 4
  * @date 2021-03-29 11:16
  */
-public class SuperActionBar2 extends RelativeLayout {
+public class SuperActionBar2 extends LinearLayout {
 
     private LayoutInflater mInflater;
 
@@ -103,6 +103,10 @@ public class SuperActionBar2 extends RelativeLayout {
         setOnClickListener(null);// 不让点击事件透过bar
         initView();
         initAttr(context, attrs);
+        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.super_action_bar_background_color));
+        float elevation = getContext().getResources().getDimension(R.dimen.super_action_bar_elevation);
+        if (elevation != 0)
+            setElevation(elevation);
     }
 
     private void initView() {
@@ -121,13 +125,14 @@ public class SuperActionBar2 extends RelativeLayout {
     private void initAttr(Context context, AttributeSet attrs) {
         if (attrs != null) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SuperActionBar);
-            int styleType = ta.getInteger(R.styleable.SuperActionBar_super_action_bar_style, 0);
+            int styleType = ta.getInteger(R.styleable.SuperActionBar_super_action_bar_style, Style.TITLE_LEFT_IMG.value);
             if (styleType != 0) {
                 initStyle(Style.getActionType(styleType));
 
                 String titleText = ta.getString(R.styleable.SuperActionBar_super_action_bar_title_text);
-                if (TextUtils.isEmpty(titleText))
+                if (TextUtils.isEmpty(titleText) && !isInEditMode()) {
                     titleText = ((Activity) getContext()).getTitle().toString();
+                }
                 setTitleText(titleText);
 
                 // ---------------------------------------------------------------------------------
@@ -440,7 +445,7 @@ public class SuperActionBar2 extends RelativeLayout {
             @Override
             public void onGlobalLayout() {
                 layoutContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                LayoutParams lp = (LayoutParams) llMiddleContainer.getLayoutParams();
+                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) llMiddleContainer.getLayoutParams();
                 if (isLeft) {
                     lp.leftMargin = lp.rightMargin <= layoutContainer.getWidth() ? layoutContainer.getWidth() : lp.rightMargin;
                     lp.rightMargin = lp.leftMargin;
