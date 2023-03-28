@@ -127,6 +127,8 @@ public class SuperActionBar extends RelativeLayout {
                 initStyle(Style.getActionType(styleType));
 
                 String titleText = ta.getString(R.styleable.SuperActionBar_super_action_bar_title_text);
+                if (TextUtils.isEmpty(titleText))
+                    titleText = ((Activity) getContext()).getTitle().toString();
                 setTitleText(titleText);
 
                 // ---------------------------------------------------------------------------------
@@ -688,7 +690,7 @@ public class SuperActionBar extends RelativeLayout {
 
         @Override
         public void onClick(View view) {
-            ((Activity) view.getContext()).finish();
+            ((Activity) view.getContext()).onBackPressed();
         }
     }
 
