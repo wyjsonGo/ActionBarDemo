@@ -10,8 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp" />
 
-    <!-- super_action_bar_line 显示的时候给 common_action_bar 设置下面代码(保证SuperActionBar高度正好)-->
-    <!--android:layout_marginBottom="-0.5dp"-->
     <RelativeLayout
         android:id="@+id/common_action_bar"
         android:layout_width="match_parent"
@@ -78,7 +76,6 @@
         android:id="@+id/v_action_bar_line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/super_action_bar_line_height"
-        android:background="@color/super_action_bar_base_color_line"
-        android:visibility="visible" />
+        android:background="@color/super_action_bar_base_color_line" />
 
 </LinearLayout>
