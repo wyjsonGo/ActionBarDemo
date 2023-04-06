@@ -20,12 +20,9 @@ public class Test6Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        getSuperActionBar()
-                .setLeftText();
         AlwaysMarqueeTextView tvTitle = (AlwaysMarqueeTextView) LayoutInflater.from(this).inflate(R.layout.test6_action_bar_middle, null);
         tvTitle.setText("标题过长情况,走马灯效果&标题过长情况,走马灯效果");
-        getSuperActionBar().getMiddleContainer().removeAllViews();
-        getSuperActionBar().getMiddleContainer().addView(tvTitle);
+        getSuperActionBar().setLeftText().setMiddleView(tvTitle);
 
         /**
          * 下面代码是切换走马灯开关

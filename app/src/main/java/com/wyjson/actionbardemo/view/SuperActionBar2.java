@@ -266,6 +266,41 @@ public class SuperActionBar2 extends LinearLayout {
         return this;
     }
 
+    public SuperActionBar2 addView(ViewGroup parentView, View view) {
+        parentView.addView(view);
+        return this;
+    }
+
+    public SuperActionBar2 addLeftView(View view) {
+        return addView(getLeftContainer(), view);
+    }
+
+    public SuperActionBar2 addMiddleView(View view) {
+        return addView(getMiddleContainer(), view);
+    }
+
+    public SuperActionBar2 addRightView(View view) {
+        return addView(getRightContainer(), view);
+    }
+
+    public SuperActionBar2 setView(ViewGroup parentView, View view) {
+        parentView.removeAllViews();
+        parentView.addView(view);
+        return this;
+    }
+
+    public SuperActionBar2 setLeftView(View view) {
+        return setView(getLeftContainer(), view);
+    }
+
+    public SuperActionBar2 setMiddleView(View view) {
+        return setView(getMiddleContainer(), view);
+    }
+
+    public SuperActionBar2 setRightView(View view) {
+        return setView(getRightContainer(), view);
+    }
+
     public SuperActionBar2 setLeftImg() {
         return setLeftImg(imgLeft, new OnActionBarLeftClickListener());
     }

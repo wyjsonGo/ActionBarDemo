@@ -256,6 +256,41 @@ public class SuperActionBar extends LinearLayout {
         return this;
     }
 
+    public SuperActionBar addView(ViewGroup parentView, View view) {
+        parentView.addView(view);
+        return this;
+    }
+
+    public SuperActionBar addLeftView(View view) {
+        return addView(getLeftContainer(), view);
+    }
+
+    public SuperActionBar addMiddleView(View view) {
+        return addView(getMiddleContainer(), view);
+    }
+
+    public SuperActionBar addRightView(View view) {
+        return addView(getRightContainer(), view);
+    }
+
+    public SuperActionBar setView(ViewGroup parentView, View view) {
+        parentView.removeAllViews();
+        parentView.addView(view);
+        return this;
+    }
+
+    public SuperActionBar setLeftView(View view) {
+        return setView(getLeftContainer(), view);
+    }
+
+    public SuperActionBar setMiddleView(View view) {
+        return setView(getMiddleContainer(), view);
+    }
+
+    public SuperActionBar setRightView(View view) {
+        return setView(getRightContainer(), view);
+    }
+
     public SuperActionBar setLeftImg() {
         return setLeftImg(imgLeft, new OnActionBarLeftClickListener());
     }

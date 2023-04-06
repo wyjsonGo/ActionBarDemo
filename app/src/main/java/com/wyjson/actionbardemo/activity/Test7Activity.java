@@ -14,14 +14,10 @@ public class Test7Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        getSuperActionBar()
-                .setLeftText();
         ImageView imageView = (ImageView) LayoutInflater.from(this).inflate(R.layout.test7_action_bar_middle, null);
-        getSuperActionBar().getMiddleContainer().removeAllViews();
-        getSuperActionBar().getMiddleContainer().addView(imageView);
+        getSuperActionBar().setLeftText().setMiddleView(imageView);
 
         ((TextView) findViewById(R.id.tv_content)).setText("自定义带图片(左右按钮同理)");
-
 
     }
 }
