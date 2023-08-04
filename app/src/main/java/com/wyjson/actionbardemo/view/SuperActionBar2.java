@@ -65,7 +65,7 @@ public class SuperActionBar2 extends LinearLayout {
     private void init(Context context, AttributeSet attrs) {
         mInflater = LayoutInflater.from(context);
         mInflater.inflate(R.layout.super_action_bar_common_basics, this);
-        setOnClickListener(null);// 不让点击事件透过bar
+        setClickable(true);// 不让点击事件透过bar
         initView();
         initAttr(context, attrs);
         initSetting();
