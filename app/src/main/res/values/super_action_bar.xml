@@ -6,9 +6,6 @@
         <attr name="super_action_bar_title_text" format="string" />
         <attr name="super_action_bar_left_text" format="string" />
         <attr name="super_action_bar_right_text" format="string" />
-        <!-- iconfont版本 -->
-        <attr name="super_action_bar_left_icon" format="string" />
-        <attr name="super_action_bar_right_icon" format="string" />
 
         <attr name="super_action_bar_left_img" format="reference" />
         <attr name="super_action_bar_right_img" format="reference" />
@@ -23,6 +20,25 @@
 
         <attr name="super_action_bar_background" format="reference|color" />
 
+        <!-- iconfont版本 -->
+        <attr name="super_action_bar_left_icon" format="string" />
+        <attr name="super_action_bar_right_icon" format="string" />
+
     </declare-styleable>
+
+    <!--    <color name="super_action_bar_background_color">@android:color/white</color>-->
+    <color name="super_action_bar_background_color">@color/theme_color</color>
+    <!--    <color name="super_action_bar_base_color_text">@android:color/black</color>-->
+    <color name="super_action_bar_base_color_text">@android:color/white</color>
+    <color name="super_action_bar_base_color_line">#F8F8F8</color>
+
+    <dimen name="super_action_bar_height">48dp</dimen>
+    <dimen name="super_action_bar_title_size">18sp</dimen>
+    <dimen name="super_action_bar_btn_size">14sp</dimen>
+    <dimen name="super_action_bar_line_height">0dp</dimen>
+    <dimen name="super_action_bar_elevation">4dp</dimen>
+
+    <!-- iconfont版本 -->
+    <dimen name="super_action_bar_btn_icon_size">20sp</dimen>
 
 </resources>

@@ -2,6 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:drawable="@drawable/super_action_bar_back_white_pressed" android:state_pressed="true" />
-    <item android:drawable="@drawable/super_action_bar_back_black_normal" />
+    <item android:state_pressed="false">
+        <bitmap android:src="@drawable/super_action_bar_back_white_normal" android:tint="@color/super_action_bar_base_color_text" />
+    </item>
 
 </selector>

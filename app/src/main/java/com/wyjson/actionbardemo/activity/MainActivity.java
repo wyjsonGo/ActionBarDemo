@@ -51,6 +51,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.tv_test11:
                 startActivity(new Intent(this, Test11Activity.class));
                 break;
+            case R.id.tv_test12:
+                startActivity(new Intent(this, Test12Activity.class));
+                break;
+            case R.id.tv_test13:
+                startActivity(new Intent(this, Test13Activity.class));
+                break;
             case R.id.tv_icon:
                 startActivity(new Intent(this, IconActivity.class));
                 break;

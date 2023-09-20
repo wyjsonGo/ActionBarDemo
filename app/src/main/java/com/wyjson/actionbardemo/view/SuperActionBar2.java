@@ -8,6 +8,7 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
@@ -33,8 +35,6 @@ import com.wyjson.actionbardemo.utils.StatusBarUtils;
  */
 public class SuperActionBar2 extends LinearLayout {
 
-    private LayoutInflater mInflater;
-
     private View vStatusBar;
     private View commonActionBar;
     private LinearLayout llLeftContainer, llMiddleContainer, llRightContainer;
@@ -48,9 +48,11 @@ public class SuperActionBar2 extends LinearLayout {
     private IconTextView tvLeft, tvRight;
 
     private final @DrawableRes
-    int imgLeft = R.drawable.super_action_bar_back_white_selector;
+    int imgLeft = R.drawable.super_action_bar_back_theme_selector;
     private final @StringRes
     int iconLeft = R.string.super_action_bar_left_return_icon;
+
+    private boolean isTitleCenter = true;
 
     public SuperActionBar2(Context context) {
         this(context, null);
@@ -63,8 +65,7 @@ public class SuperActionBar2 extends LinearLayout {
 
     //<editor-fold desc="init">
     private void init(Context context, AttributeSet attrs) {
-        mInflater = LayoutInflater.from(context);
-        mInflater.inflate(R.layout.super_action_bar_common_basics, this);
+        LayoutInflater.from(context).inflate(R.layout.super_action_bar_common_basics, this);
         setClickable(true);// 不让点击事件透过bar
         initView();
         initAttr(context, attrs);
@@ -170,18 +171,6 @@ public class SuperActionBar2 extends LinearLayout {
             ta.recycle();
         }
     }
-
-    public interface OnClickListener {
-        void onClick(View view);
-    }
-
-    public void setOnLeftClickListener(OnClickListener listener) {
-        mLeftClickListener = listener;
-    }
-
-    public void setOnRightClickListener(OnClickListener listener) {
-        mRightClickListener = listener;
-    }
     //</editor-fold>
 
     //<editor-fold desc="get">
@@ -234,6 +223,19 @@ public class SuperActionBar2 extends LinearLayout {
 
 
     //<editor-fold desc="set">
+
+    public interface OnClickListener {
+        void onClick(View view);
+    }
+
+    public void setOnLeftClickListener(OnClickListener listener) {
+        mLeftClickListener = listener;
+    }
+
+    public void setOnRightClickListener(OnClickListener listener) {
+        mRightClickListener = listener;
+    }
+
     public SuperActionBar2 setTitleText(CharSequence title) {
         if (tvTitle != null)
             tvTitle.setText(title);
@@ -266,8 +268,29 @@ public class SuperActionBar2 extends LinearLayout {
         return this;
     }
 
+    /**
+     * 靠前调用,要在设置left和right之前调用
+     *
+     * @param isOpen
+     * @return
+     */
+    public SuperActionBar2 switchTitleCenter(boolean isOpen) {
+        isTitleCenter = isOpen;
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) llMiddleContainer.getLayoutParams();
+        if (isTitleCenter) {
+            llMiddleContainer.setGravity(Gravity.CENTER);
+            lp.addRule(RelativeLayout.CENTER_IN_PARENT);
+        } else {
+            llMiddleContainer.setGravity(Gravity.CENTER_VERTICAL + Gravity.START);
+            lp.removeRule(RelativeLayout.CENTER_IN_PARENT);
+        }
+        llMiddleContainer.setLayoutParams(lp);
+        return this;
+    }
+
     public SuperActionBar2 addView(ViewGroup parentView, View view) {
         parentView.addView(view);
+        refreshMiddleContainerMargin((LinearLayout) parentView);
         return this;
     }
 
@@ -284,8 +307,15 @@ public class SuperActionBar2 extends LinearLayout {
     }
 
     public SuperActionBar2 setView(ViewGroup parentView, View view) {
+        return setView(parentView, view, null);
+    }
+
+    public SuperActionBar2 setView(ViewGroup parentView, View view, ViewConsumer viewConsumer) {
         parentView.removeAllViews();
         parentView.addView(view);
+        refreshMiddleContainerMargin((LinearLayout) parentView);
+        if (viewConsumer != null)
+            viewConsumer.accept(view);
         return this;
     }
 
@@ -295,6 +325,15 @@ public class SuperActionBar2 extends LinearLayout {
 
     public SuperActionBar2 setMiddleView(View view) {
         return setView(getMiddleContainer(), view);
+    }
+
+    public SuperActionBar2 setMiddleView(@LayoutRes int resource, ViewConsumer viewConsumer) {
+        View view = LayoutInflater.from(getContext()).inflate(resource, getMiddleContainer(), false);
+        return setView(getMiddleContainer(), view, viewConsumer);
+    }
+
+    public interface ViewConsumer {
+        void accept(View view);
     }
 
     public SuperActionBar2 setRightView(View view) {
@@ -312,13 +351,13 @@ public class SuperActionBar2 extends LinearLayout {
     public SuperActionBar2 setLeftImg(Drawable drawable, OnClickListener listener) {
         llLeftContainer.removeAllViews();
         if (ivLeft == null)
-            ivLeft = (ImageView) mInflater.inflate(R.layout.super_action_bar_common_img, null);
+            ivLeft = (ImageView) LayoutInflater.from(getContext()).inflate(R.layout.super_action_bar_common_img, llLeftContainer, false);
         llLeftContainer.addView(ivLeft);
 
         if (drawable != null) {
             ivLeft.setImageDrawable(drawable);
             setOnLeftClickListener(listener);
-            setMiddleContainerMargin(llLeftContainer, true);
+            refreshMiddleContainerMargin(getLeftContainer());
         }
         return this;
     }
@@ -330,13 +369,13 @@ public class SuperActionBar2 extends LinearLayout {
     public SuperActionBar2 setRightImg(Drawable drawable, OnClickListener listener) {
         llRightContainer.removeAllViews();
         if (ivRight == null)
-            ivRight = (ImageView) mInflater.inflate(R.layout.super_action_bar_common_img, null);
+            ivRight = (ImageView) LayoutInflater.from(getContext()).inflate(R.layout.super_action_bar_common_img, llRightContainer, false);
         llRightContainer.addView(ivRight);
 
         if (drawable != null) {
             ivRight.setImageDrawable(drawable);
             setOnRightClickListener(listener);
-            setMiddleContainerMargin(llRightContainer, false);
+            refreshMiddleContainerMargin(getRightContainer());
         }
         return this;
     }
@@ -356,14 +395,14 @@ public class SuperActionBar2 extends LinearLayout {
     public SuperActionBar2 setLeftText(CharSequence text, boolean isIcon, OnClickListener listener) {
         llLeftContainer.removeAllViews();
         if (tvLeft == null)
-            tvLeft = (IconTextView) mInflater.inflate(R.layout.super_action_bar_common_text, null);
+            tvLeft = (IconTextView) LayoutInflater.from(getContext()).inflate(R.layout.super_action_bar_common_text, llLeftContainer, false);
         llLeftContainer.addView(tvLeft);
 
         if (!TextUtils.isEmpty(text)) {
             tvLeft.setText(text);
             tvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(isIcon ? R.dimen.super_action_bar_btn_icon_size : R.dimen.super_action_bar_btn_size));
             setOnLeftClickListener(listener);
-            setMiddleContainerMargin(llLeftContainer, true);
+            refreshMiddleContainerMargin(getLeftContainer());
         }
         return this;
     }
@@ -375,35 +414,55 @@ public class SuperActionBar2 extends LinearLayout {
     public SuperActionBar2 setRightText(CharSequence text, boolean isIcon, OnClickListener listener) {
         llRightContainer.removeAllViews();
         if (tvRight == null)
-            tvRight = (IconTextView) mInflater.inflate(R.layout.super_action_bar_common_text, null);
+            tvRight = (IconTextView) LayoutInflater.from(getContext()).inflate(R.layout.super_action_bar_common_text, llRightContainer, false);
         llRightContainer.addView(tvRight);
 
         if (!TextUtils.isEmpty(text)) {
             tvRight.setText(text);
             tvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(isIcon ? R.dimen.super_action_bar_btn_icon_size : R.dimen.super_action_bar_btn_size));
             setOnRightClickListener(listener);
-            setMiddleContainerMargin(llRightContainer, false);
+            refreshMiddleContainerMargin(getRightContainer());
         }
         return this;
     }
 
-    private void setMiddleContainerMargin(final LinearLayout layoutContainer, final boolean isLeft) {
+    private void refreshMiddleContainerMargin(final LinearLayout layoutContainer) {
+        String tag = (String) layoutContainer.getTag();
+        if (!TextUtils.equals(tag, "left") && !TextUtils.equals(tag, "right")) {
+            return;
+        }
         ViewTreeObserver vto = layoutContainer.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                layoutContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) llMiddleContainer.getLayoutParams();
-                if (isLeft) {
-                    lp.leftMargin = lp.rightMargin <= layoutContainer.getWidth() ? layoutContainer.getWidth() : lp.rightMargin;
-                    lp.rightMargin = lp.leftMargin;
-                } else {
-                    lp.rightMargin = lp.leftMargin <= layoutContainer.getWidth() ? layoutContainer.getWidth() : lp.leftMargin;
-                    lp.leftMargin = lp.rightMargin;
+        if (isTitleCenter) {
+            vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    layoutContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) llMiddleContainer.getLayoutParams();
+                    if (TextUtils.equals(tag, "left")) {
+                        lp.leftMargin = lp.rightMargin <= layoutContainer.getWidth() ? layoutContainer.getWidth() : lp.rightMargin;
+                        lp.rightMargin = lp.leftMargin;
+                    } else {
+                        lp.rightMargin = lp.leftMargin <= layoutContainer.getWidth() ? layoutContainer.getWidth() : lp.leftMargin;
+                        lp.leftMargin = lp.rightMargin;
+                    }
+                    llMiddleContainer.setLayoutParams(lp);
                 }
-                llMiddleContainer.setLayoutParams(lp);
-            }
-        });
+            });
+        } else {
+            vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    layoutContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) llMiddleContainer.getLayoutParams();
+                    if (TextUtils.equals(tag, "left")) {
+                        lp.leftMargin = layoutContainer.getWidth();
+                    } else {
+                        lp.rightMargin = layoutContainer.getWidth();
+                    }
+                    llMiddleContainer.setLayoutParams(lp);
+                }
+            });
+        }
     }
 
     public SuperActionBar2 setBothListener(OnClickListener leftListener, OnClickListener rightListener) {

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorAccent">@color/theme_color</color>
+    <color name="colorPrimary">@color/super_action_bar_background_color</color>
+    <color name="layout_bg">@android:color/white</color>
 
     <color name="theme_color">#51BA97</color>
 

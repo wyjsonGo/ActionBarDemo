@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import com.wyjson.actionbardemo.R;
 
-public class Test11Activity extends BaseActivity {
+public class Test12Activity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,11 +14,12 @@ public class Test11Activity extends BaseActivity {
         setContentView(R.layout.activity_test);
 
         getSuperActionBar()
+                .switchTitleCenter(false)
                 .setTitleText("标题")
                 .setLeftText()
-                .setRightImg(R.mipmap.ic_launcher, view -> Toast.makeText(Test11Activity.this, "右边图片按钮的点击事件", Toast.LENGTH_SHORT).show());
+                .setRightImg(R.mipmap.ic_launcher, view -> Toast.makeText(Test12Activity.this, "右边图片按钮的点击事件", Toast.LENGTH_SHORT).show());
 
-        ((TextView) findViewById(R.id.tv_content)).setText("标题,左边Icon,右边图片");
+        ((TextView) findViewById(R.id.tv_content)).setText("标题居左");
 
     }
 }
